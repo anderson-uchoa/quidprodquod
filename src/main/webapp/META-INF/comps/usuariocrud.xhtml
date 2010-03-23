@@ -71,11 +71,12 @@
 		<rich:message for="confirmaSenha" />
 		<br />
 		 *Role:
-		 <rich:comboBox id="role" value="" required="true"
-			requiredMessage="Campo obrigatório" defaultLabel="Escolha...">
+		 <h:selectOneMenu id="role" value="#{usuarioBean.usuario.role}"
+			converter="genericConverter" required="true"
+			requiredMessage="Campo obrigatório">
 			<f:selectItem itemLabel="Escolha" />
 			<f:selectItems value="#{roleBean.roleSelect}" />
-		</rich:comboBox>
+		</h:selectOneMenu>
 		<br />
 		<a4j:commandButton id="salvar" value="salvar" type="submit"
 			action="#{usuarioBean.save}" reRender="tabPanel">
