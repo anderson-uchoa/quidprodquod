@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Insert title here</title>
+	</head>
+	<body>
+
+	<f:view>
+		<a4j:form>
+			<a4j:keepAlive beanName="roleBean"></a4j:keepAlive>
+			<a4j:commandButton value="Todos" action="#{roleBean.listAll}"
+				reRender="table">
+			</a4j:commandButton>
+			<rich:dataTable border="1" id="table" value="#{roleBean.list}"
+				var="item" rows="10">
+				<rich:column id="column1">
+					<f:facet name="header">Código</f:facet>
+					<h:outputText id="idItem" value="#{item.id}" />
+				</rich:column>
+				<rich:column id="column2">
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{item.nome}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Alterar</f:facet>
+					<a4j:commandLink id="alterar" value="alterar"
+						action="#{roleBean.prepareUpdate}" reRender="tabPanel">
+						<a4j:actionparam name="idAlteracao" value="#{item.id}"
+							assignTo="#{roleBean.idEntity}" />
+					</a4j:commandLink>
+				</rich:column>
+
+				<rich:column>
+					<f:facet name="header">Excluir</f:facet>
+					<a4j:commandLink oncomplete="Richfaces.showModalPanel('modal');"
+						value="Excluir">
+						<a4j:actionparam name="idExclusao" value="#{item.id}"
+							assignTo="#{roleBean.idEntity}" />
+					</a4j:commandLink>
+				</rich:column>
+
+				<f:facet name="footer">
+					<rich:datascroller for="table" reRender="table" />
+				</f:facet>
+			</rich:dataTable>
+
+			<ui:include src="modalwindow.xhtml">
+				<ui:param name="bean" value="${roleBean}" />
+			</ui:include>
+
+		</a4j:form>
+	</f:view>
+	</body>
+</ui:composition>

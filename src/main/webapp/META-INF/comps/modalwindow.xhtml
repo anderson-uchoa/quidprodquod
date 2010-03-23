@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Insert title here</title>
+	</head>
+	<body>
+	<rich:modalPanel id="modal">
+		<f:facet name="header">
+			<h:outputText value="Confirme a operação" />
+		</f:facet>
+
+		<f:facet name="controls">
+			<h:graphicImage value="css/images/close.gif"
+				style="cursor:pointer" onclick="Richfaces.hideModalPanel('modal')" />
+		</f:facet>
+		<br />
+
+		<h:outputText value="Confirma exclusão do registro ?" />
+		<br />
+		<a4j:commandButton value="Sim" action="#{bean.remove}"
+			oncomplete="Richfaces.hideModalPanel('modal')">
+		</a4j:commandButton>
+
+		<a4j:commandButton value="Cancelar"
+			oncomplete="Richfaces.hideModalPanel('modal')">
+		</a4j:commandButton>
+	</rich:modalPanel>
+	</body>
+</ui:composition>

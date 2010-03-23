@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE faces-config PUBLIC
+  "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+  "http://java.sun.com/dtd/web-facesconfig_1_1.dtd" >
+
+<faces-config>
+
+	<application>
+		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+	</application>
+
+	<!-- managed beans of the simple hello world app -->
+	<managed-bean>
+		<managed-bean-name>helloWorldBacking</managed-bean-name>
+		<managed-bean-class>
+			br.com.alexegidio.HelloWorldBacking
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>authenticatorBean</managed-bean-name>
+		<managed-bean-class>
+			br.com.alexegidio.bean.AuthenticatorBean
+		</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>usuarioBean</managed-bean-name>
+		<managed-bean-class>
+			br.com.alexegidio.bean.UsuarioBean
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>tagBean</managed-bean-name>
+		<managed-bean-class>
+			br.com.alexegidio.bean.TagBean
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>roleBean</managed-bean-name>
+		<managed-bean-class>
+			br.com.alexegidio.bean.RoleBean
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>perguntaBean</managed-bean-name>
+		<managed-bean-class>
+			br.com.alexegidio.bean.PerguntaBean
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>suportBean</managed-bean-name>
+		<managed-bean-class>
+			br.com.alexegidio.bean.SuportBean
+		</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+
+	<!-- navigation rules for helloWorld.jsp -->
+	<navigation-rule>
+		<from-view-id>/helloWorld.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/page2.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- navigation rules for login -->
+	<navigation-rule>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>admin</from-outcome>
+			<to-view-id>/admin/adminpage.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>user</from-outcome>
+			<to-view-id>/user/userpage.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- navigation rules for authenticator bean -->
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>loginPage</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/home.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- Navigation Rules for menus -->
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>home</from-outcome>
+			<to-view-id>/home.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/admin/*</from-view-id>
+		<navigation-case>
+			<from-outcome>tags</from-outcome>
+			<to-view-id>admin/tag.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>tags</from-outcome>
+			<to-view-id>/tags.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/user/*</from-view-id>
+		<navigation-case>
+			<from-outcome>enviarPergunta</from-outcome>
+			<to-view-id>/user/pergunta.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<lifecycle>
+		<!-- Phase Listeners -->
+		<phase-listener> br.com.alexegidio.jsf.util.OsivPhaseListener
+	</phase-listener>
+		<!--
+			phase-listener> br.com.alexegidio.jsf.util.AuthenticatorListener
+			</phase-listener
+		-->
+	</lifecycle>
+
+	<!-- Validators -->
+	<validator>
+		<validator-id>emailValidator</validator-id>
+		<validator-class>br.com.alexegidio.jsf.util.EmailValidator</validator-class>
+	</validator>
+	<validator>
+		<validator-id>passwordValidator</validator-id>
+		<validator-class>br.com.alexegidio.jsf.util.PasswordValidator</validator-class>
+	</validator>
+	<!-- End Validator -->
+
+	<!-- Entity converter -->
+	<converter>
+		<converter-id>genericConverter</converter-id>
+		<converter-class>br.com.alexegidio.jsf.util.GenericConverter</converter-class>
+	</converter>
+	<!-- fim converters -->
+
+</faces-config>

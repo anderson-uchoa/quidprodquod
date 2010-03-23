@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver
+        </property>
+		<property name="hibernate.connection.password">postgres
+        </property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/quidproquod
+        </property>
+		<property name="hibernate.connection.username">postgres
+        </property>
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect
+        </property>
+		<property name="hibernate.show_sql">true
+        </property>
+		<property name="hibernate.format_sql">true
+        </property>
+		<property name="hbm2ddl.auto">update
+        </property>
+		<property name="hibernate.format_sql">true
+        </property>
+		<property name="current_session_context_class">thread</property>
+		<mapping class="br.com.alexegidio.model.Usuario" />
+		<mapping class="br.com.alexegidio.model.Classificacao" />
+		<mapping class="br.com.alexegidio.model.Pergunta" />
+		<mapping class="br.com.alexegidio.model.Pessoa" />
+		<mapping class="br.com.alexegidio.model.Resposta" />
+		<mapping class="br.com.alexegidio.model.Tag" />
+		<mapping class="br.com.alexegidio.model.Role" />
+	</session-factory>
+</hibernate-configuration>
