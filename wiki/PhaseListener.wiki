@@ -4,7 +4,7 @@
 
 Add your content here.
 
-==Fase de um PhaseListener==
+==Fases de um PhaseListener==
 
 BeforaPhase: O evento é *disparado* antes de iniciar todas as fases
 AfterPhase: O evento é *disparado* depois do inicio de cada fase
