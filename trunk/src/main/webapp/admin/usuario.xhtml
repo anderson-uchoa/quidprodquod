@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+<ui:composition template="../template.xhtml">
+	<ui:define name="customMenu">
+		<ui:include src="/META-INF/comps/menuadmin.xhtml" />
+	</ui:define>
+	<ui:define name="body">
+		<rich:tabPanel switchType="client" id="tabPanel">
+			<rich:tab label="Cadastro" id="tabCadastro">
+
+				<ui:include src="/META-INF/comps/usuariocrud.xhtml" />
+			</rich:tab>
+			<rich:tab label="Listagem" id="tabList">
+				<ui:include src="/META-INF/comps/usuariolist.xhtml" />
+			</rich:tab>
+		</rich:tabPanel>
+	</ui:define>
+</ui:composition>
+</body>
+</html>

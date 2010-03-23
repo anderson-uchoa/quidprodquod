@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+<a4j:form id="form">
+	<a href="usuario.jsf">Cadastre-se</a>
+	<br />
+	<h:messages id="mensagens" globalOnly="true"></h:messages>
+	*Login:<h:inputText id="login"
+		value="#{authenticatorBean.usuario.login}" required="true"
+		requiredMessage="O campo login é obrigatório">
+	</h:inputText>
+	<rich:message for="login" />
+	<br />
+	*Senha:<h:inputSecret id="senha"
+		value="#{authenticatorBean.usuario.senha}" required="true"
+		requiredMessage="O campo senha é obrigatório">
+	</h:inputSecret>
+	<rich:message for="senha" />
+	<br />
+	<a4j:commandButton action="#{authenticatorBean.autenthicate}"
+		reRender="form" value="Entrar" />
+</a4j:form>
+</body>
+</html>

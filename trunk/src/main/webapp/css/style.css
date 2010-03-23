@@ -1,0 +1,467 @@
+/*  
+Theme Name: Blue Chillout Space
+Theme URI: http://www.darganov.com/blue-chillout-space-wordpress-theme.html
+Description: Blue Chillout Space is a blue, two-column widget ready Wordpress theme.
+Version: 0.2.2
+Author: Iliyan Darganov
+Author URI: http://www.darganov.com/
+
+	The CSS, XHTML and design is released under Creative Commons Attribution-Share Alike 3.0:
+	http://creativecommons.org/licenses/by-sa/3.0/
+
+*/
+
+* {
+	padding: 0;
+    margin: 0;
+	list-style: none;
+}
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #333333;
+	background-color: #FFFFFF;
+	font-size: .8em;
+}
+#header-wrapper, #footer-wrapper, #content-wrapper {
+	float: left;
+	width: 100%;
+	clear: both;
+	position: relative;
+}
+#header, #footer, #content-sidebar {
+	width: 60em;
+	margin: 0 auto;
+	text-align: left;
+}
+#header-wrapper {
+	background-color: #56aae6;
+	border-bottom-width: 1.4em;
+	border-bottom-style: solid;
+	border-bottom-color: #d0e6fc;
+	background-image: url(images/header-bg.gif);
+	background-repeat: repeat-x;
+	background-position: bottom;
+}
+#headerimg {
+	padding-top: .8em;
+	padding-bottom: .4em;
+}
+#headerimg h1 {
+	font-size: 1.8em;
+	font-weight: bold;
+}
+#headerimg h1 a, #headerimg h1 a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+#headerimg h1 a:hover {
+	text-decoration: underline;
+}
+#headerimg .description {
+	font-size: 1em;
+	color: #d0e6fc;
+}
+hr, legend {
+	display: none;
+}
+#top-menu {
+	font-size: .88em;
+	float: right;
+}
+#top-menu ul li {
+	float: left;
+}
+#top-menu ul li a {
+	float: left;
+	padding: 8px 12px;
+	color: #d0e6fc;
+	border-top: 1px solid #4989f3;
+	border-right: 1px solid #2a64d9;
+	background: #326ae5 url(images/top-menu-bg.gif) repeat-x top left;
+	text-decoration: none;
+}
+#top-menu ul li a:hover {
+	background: #3f7ee8;
+}
+#top-menu ul li.current_page_item a {
+	color: #3ca9ff;
+	font-weight: bold;
+	border-right: 1px solid #000;
+	background: #d0e6fc url(images/top-menu-bg-active.gif) repeat-x top left;
+}
+#content-wrapper  {
+	padding-top: 1.4em;
+	background-image: url(images/content-sidebar-bg.gif);
+	background-repeat: repeat-x;
+	background-position: top;
+}
+#content {
+	float: right;
+	width: 40.6em;
+	margin-left: 1.4em;
+	padding: 1.4em;
+	padding-top: 0;
+	text-align: justify;
+	background-color: #FFFFFF;
+	border: 1px solid #e6f3ff;
+	line-height: 1.5em;
+	margin-bottom: 1.4em;
+}
+#content a:link, #content a:visited {
+	color: #3ca9ff;
+	text-decoration: underline;
+}
+#content a:hover {
+	color: #3ca9ff;
+	text-decoration: none;
+}
+#content h2 {
+	font-size: 1.7em;
+	font-weight: normal;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #3ca9ff;
+	margin-top: 1em;
+	clear: both;
+	line-height: 1.2em;
+}
+#content h3 {
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #000;
+	margin-top: 1em;
+	clear: both;
+	line-height: 1.2em;
+}
+#content h3#comments, #respond {
+	margin-bottom: 1em;
+	padding-left: 1.4em;
+	background-image: url(images/comments.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+#respond {
+	background-image: url(images/comment.gif);
+}
+small {
+	font-size: 0.8em;
+	line-height: 2.5em;
+	color: #999;
+}
+#content p {
+	margin: .8em 0 .8em 0;
+	padding: .2em 0 .2em 0;
+}
+#content ul, ol {
+	margin-bottom: .6em;
+	margin-top: .6em;
+	margin-left: 2em;
+}
+#content ul li {
+	background-image: url(images/content-ul.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 1.4em;
+}
+#content ol {
+	padding-left: 1.6em;
+}
+#content ol li {
+	list-style-type: decimal;
+}
+input, select, textarea {
+	padding: 3px;
+	border: 1px solid #d0e6fc;
+	background-color: #FFFFFF;
+}
+input:hover, textarea:hover {
+	background: #FFFFFF;
+	border: 1px solid #8dcdff;
+}
+input:focus, textarea:focus {
+	background: #f4f9ff;
+	border: 1px solid #8dcdff;
+}
+input[type=submit], input[type=reset] {
+	font-size: .9em;
+	text-transform: uppercase;
+	color: #3ca9ff;
+	font-weight: bold;
+}
+#sidebar {
+	float: left;
+	width: 15em;
+}
+#sidebar ul li {
+	background-color: #d0e6fc;
+	margin-bottom: 1.4em;
+	background-image: url(images/left-bg.gif);
+	background-repeat: repeat-x;
+	background-position: left bottom;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #c6e6ff;
+	padding: .8em;
+}
+#sidebar ul h2 {
+	font-size: 1.1em;
+	font-weight: normal;
+	color: #3ca9ff;
+	text-transform: uppercase;
+	font-weight: bold;
+	margin-bottom: .6em;
+}
+#sidebar ul li ul li {
+	margin-bottom: 0;
+	background: none;
+	border: none;
+	padding: 0;
+}
+#sidebar ul.children a {
+	text-indent: 1em;
+	background-image: url(images/submenu-bullet.gif);
+	background-repeat: no-repeat;
+	background-position: 10px 12px;
+}
+#sidebar ul li ul li a {
+	font-size: .88em;
+	display: block;
+	padding: .7em;
+	padding-left: .7em;
+	padding-right: .7em;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #d0e6fc;
+	background-color: #ffffff;
+}
+#sidebar ul  li a:link, #sidebar ul  li a:visited {
+	color: #333333;
+	text-decoration: none;
+}
+#sidebar ul li a:hover {
+	color: #3ca9ff;
+	background-color: #f5fbff;
+}
+.recentcomments {
+	font-size: .88em;
+	padding: .7em!important;
+	padding-left: .7em!important;
+	padding-right: .7em!important;
+	border-bottom-width: 1px!important;
+	border-bottom-style: solid!important;
+	border-bottom-color: #d0e6fc!important;
+	background-color: #ffffff!important;
+}
+#footer-wrapper {
+	/*padding-top: 1.4em;*/
+}
+#footer {
+	color: #3ca9ff;	
+	background-image: url(images/footer-bg.gif);
+	background-repeat: repeat-x;
+	background-position: top;
+	text-align: center;
+}
+#footer p {
+	font-size: .8em;
+	margin-bottom: 2em;
+	padding-top: 1.4em;
+	line-height: 1.6em;
+}
+#footer a {
+	color: #3ca9ff;
+	text-decoration: underline;
+}
+#footer a:hover {
+	text-decoration: none;
+}
+div.spacer {
+	clear: both;
+}
+.postmetadata {
+	color: #999;
+	clear: left;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #e6f3ff;
+	padding-bottom: 1em!important;
+}
+.navigation {
+	padding-top: 2em;
+}
+
+/* Begin Images */
+p img {
+	padding: 0;
+	max-width: 100%;
+	}
+
+/*	Using 'class="alignright"' on an image will (who would've
+	thought?!) align the image to the right. And using 'class="centered',
+	will of course center the image. This is much better than using
+	align="center", being much more futureproof (and valid) */
+
+img.centered {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	}
+
+img.alignright {
+	padding: 4px;
+	margin: 0 0 2px 7px;
+	display: inline;
+	}
+
+img.alignleft {
+	padding: 4px;
+	margin: 0 7px 2px 0;
+	display: inline;
+	}
+
+.alignright {
+	float: right;
+	}
+
+.alignleft {
+	float: left
+	}
+/* End Images */
+
+/* Begin Calendar */
+#wp-calendar {
+	empty-cells: show;
+	margin: 10px auto 0;
+	width: 155px;
+	}
+#calendar_wrap {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #d0e6fc;
+	background-color: #ffffff;
+}
+
+
+#wp-calendar #next a {
+	padding-right: 10px;
+	text-align: right;
+	}
+
+#wp-calendar #prev a {
+	padding-left: 10px;
+	text-align: left;
+	}
+
+#wp-calendar a {
+	display: block;
+	}
+
+#wp-calendar caption {
+	text-align: center;
+	width: 100%;
+	margin-top: 10px;
+	color: #3ca9ff;
+	}
+
+#wp-calendar td {
+	padding: 3px 0;
+	text-align: center;
+	}
+
+#wp-calendar td.pad:hover { /* Doesn't work in IE */
+	background-color: #fff; }
+/* End Calendar */
+
+acronym, abbr, span.caps {
+	cursor: help;
+	}
+
+acronym, abbr {
+	border-bottom: 1px dashed #999;
+	}
+
+blockquote {
+	margin: 15px 30px 0 10px;
+	padding-left: 20px;
+	border-left: 5px solid #e6f3ff;
+	}
+code {
+	margin: 15px 30px 0 10px;
+	padding: 20px;
+	background-color: #e6f3ff;
+	display: block;
+	font-size: 1.2em;
+}
+blockquote cite {
+	margin: 5px 0 0;
+	display: block;
+}
+.textwidget {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #d0e6fc;
+	background-color: #ffffff;
+	font-size: .88em;
+	padding: .7em;
+}
+
+/* Comments Styling */
+#commentform {
+/*margin: 1em 0;*/
+background: #ffffff;
+width: 100%;
+}
+#commentform textarea {
+	width: 380px;
+}
+#commentform #email, #commentform #author, #commentform #url, #commentform #mcspvalue, #commentform #email:hover, #commentform #author:hover, #commentform #url:hover, #commentform #mcspvalue:hover, #commentform #email:focus, #commentform #author:focus, #commentform #url:focus, #commentform #mcspvalue:focus {
+	width: 280px;
+}
+#commentform input{
+	margin-bottom: 3px;
+}
+#commentform , .commentlist   {
+	margin-top: 1em;
+}
+#commentform  p {
+	margin: 0!important;
+}
+/* Begin Comments*/
+.alt {
+	
+}
+.commentlist {	
+	padding: 0!important;
+	margin: 0!important;
+	background-color: #f8fbff;	
+	padding-bottom: 1em!important;
+}
+.commentlist span {
+	padding: .2em;
+	padding-left: .6em;
+	display: block;
+	clear: both;
+	background-color: #f0f7ff;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #d0e6fc;
+}
+.commentlist p {
+	margin: 1em!important;
+	margin: 0!important;
+	/*margin-bottom: 2em!important;*/
+	padding: .6em!important;
+}
+.nocomments {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+.commentmetadata {
+	margin: 0;
+	/*display: block;*/
+	}
+/* End Comments */
+
+#s {
+	width: 95%;
+}
