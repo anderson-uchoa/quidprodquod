@@ -43,7 +43,7 @@ public class OsivPhaseListener implements PhaseListener {
 	}
 
 	public PhaseId getPhaseId() {
-		return PhaseId.INVOKE_APPLICATION;
+		return PhaseId.ANY_PHASE;
 
 	}
 }

@@ -9,7 +9,6 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Restrictions;
 
-import br.com.alexegidio.model.Role;
 import br.com.alexegidio.persistence.HibernateUtil;
 
 public class GenericDaoHibernateImpl<T> implements GenericDao<T>, Serializable {
@@ -87,9 +86,8 @@ public class GenericDaoHibernateImpl<T> implements GenericDao<T>, Serializable {
 
 	@SuppressWarnings("unchecked")
 	public List<T> listAll(Class clazz) {
-		// Criteria criteria = getSession().createCriteria(getDomainClass());
 		Criteria criteria = HibernateUtil.getSessionFactory()
-				.getCurrentSession().createCriteria(Role.class);
+				.getCurrentSession().createCriteria(clazz);
 		return criteria.list();
 
 	}
