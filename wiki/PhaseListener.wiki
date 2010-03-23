@@ -6,14 +6,13 @@ Add your content here.
 
 ==Fases de um PhaseListener==
 
-BeforaPhase: O evento é *disparado* antes de iniciar todas as fases
-AfterPhase: O evento é *disparado* depois do inicio de cada fase
 
-getPhaseId(): ANY_PHASE: Dispará o evento em cada fase do ciclo de vida do JSF
+
+
 
 = Details =
 
 Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+  BeforaPhase: O evento é *disparado* antes de iniciar todas as fases
+  AfterPhase: O evento é *disparado* depois do inicio de cada fase
+  getPhaseId(): ANY_PHASE: Dispará o evento em cada fase do ciclo de vida do JSF
