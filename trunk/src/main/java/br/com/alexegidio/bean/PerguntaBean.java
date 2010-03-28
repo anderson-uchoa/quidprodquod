@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.alexegidio.dao.GenericDaoHibernateImpl;
 import br.com.alexegidio.model.Pergunta;
+import br.com.alexegidio.model.Tag;
 
 public class PerguntaBean implements Serializable {
 
@@ -14,6 +15,7 @@ public class PerguntaBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Pergunta pergunta;
 	private GenericDaoHibernateImpl<Pergunta> perguntaDAO;
+	private Tag tag;
 	private List<Pergunta> list;
 
 	public PerguntaBean() {
@@ -22,12 +24,21 @@ public class PerguntaBean implements Serializable {
 		perguntaDAO = new GenericDaoHibernateImpl<Pergunta>(Pergunta.class);
 	}
 
+	/******* G&S *********************/
 	public Pergunta getPergunta() {
 		return pergunta;
 	}
 
 	public void setPergunta(Pergunta Pergunta) {
 		this.pergunta = Pergunta;
+	}
+
+	public Tag getTag() {
+		return tag;
+	}
+
+	public void setTag(Tag tag) {
+		this.tag = tag;
 	}
 
 	public List<Pergunta> getList() {
@@ -37,6 +48,8 @@ public class PerguntaBean implements Serializable {
 	public void setList(List<Pergunta> list) {
 		this.list = list;
 	}
+
+	/***** GS ***************/
 
 	public void save() {
 		perguntaDAO.save(pergunta);

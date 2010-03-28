@@ -13,24 +13,23 @@
 	<body>
 	<a4j:form id="form">
 	*Titulo:
-	<h:inputText id="#{perguntaBean.pergunta.titulo}" required="true"
-			requiredMessage="Campo Obrigatório">
-		</h:inputText>
-		<br />
-	Descrição:
+	<h:inputText id="tfTitulo" value="#{perguntaBean.pergunta.titulo}"
+			required="true" requiredMessage="Campo Obrigatório">
+	</h:inputText>
+	
 	<br />
-		<rich:editor id="descricao" required="true"
-			requiredMessage="Campo obrigatório"
-			style="height: 123px; width: 249px; ">
-		</rich:editor>
-		<br />
+	*Descrição:
+	<h:inputTextArea id="tfDescricao" value="descricao" required="true"
+			requiredMessage="Campo obrigatório">
+	</h:inputTextArea>
+	<br />
 	Tags:
 	<h:selectOneMenu id="tag" converter="genericConverter"
-			value="#{perguntaBean.pergunta.tag}" required="true"
+			value="#{perguntaBean.tag}" required="true"
 			requiredMessage="Campo obrigatório">
-			<f:selectItem itemLabel="Escolha" />
-			<f:selectItems value="#{suportBean.tagSelect}" />
-		</h:selectOneMenu>
+		<f:selectItem itemLabel="Escolha" />
+		<f:selectItems value="#{suportBean.tagSelect}" />
+	</h:selectOneMenu>
 	</a4j:form>
 	</body>
 </ui:composition>

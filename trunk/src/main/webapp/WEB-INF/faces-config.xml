@@ -139,9 +139,9 @@
 	</navigation-rule>
 
 	<navigation-rule>
-		<from-view-id>/*</from-view-id>
+		<from-view-id>/user/*</from-view-id>
 		<navigation-case>
-			<from-outcome>enviarPergunta</from-outcome>
+			<from-outcome>perguntar</from-outcome>
 			<to-view-id>/user/pergunta.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
