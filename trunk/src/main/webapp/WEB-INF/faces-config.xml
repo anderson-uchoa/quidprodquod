@@ -139,12 +139,14 @@
 	</navigation-rule>
 
 	<navigation-rule>
-		<from-view-id>/user/*</from-view-id>
+		<from-view-id>/*</from-view-id>
 		<navigation-case>
 			<from-outcome>enviarPergunta</from-outcome>
 			<to-view-id>/user/pergunta.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<!-- fim Navigation Rules for menu-->
 
 	<lifecycle>
 		<!-- Phase Listeners -->
@@ -163,7 +165,7 @@
 	</validator>
 	<validator>
 		<validator-id>passwordValidator</validator-id>
-		<validator-class>br.com.alexegidio.jsf.util.PasswordValidator</validator-class>
+		<validator-class>br.com.alexegidio.jsf.validator.PasswordValidator</validator-class>
 	</validator>
 	<!-- End Validator -->
 

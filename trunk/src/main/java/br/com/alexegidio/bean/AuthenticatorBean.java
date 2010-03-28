@@ -33,7 +33,7 @@ public class AuthenticatorBean implements Serializable {
 	private final GenericDaoHibernateImpl<Usuario> userDao;
 
 	public AuthenticatorBean() {
-		userDao = new GenericDaoHibernateImpl<Usuario>();
+		userDao = new GenericDaoHibernateImpl<Usuario>(Usuario.class);
 		usuario = new Usuario();
 	}
 

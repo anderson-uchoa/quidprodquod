@@ -19,7 +19,7 @@ public class PerguntaBean implements Serializable {
 	public PerguntaBean() {
 		super();
 		pergunta = new Pergunta();
-		perguntaDAO = new GenericDaoHibernateImpl<Pergunta>();
+		perguntaDAO = new GenericDaoHibernateImpl<Pergunta>(Pergunta.class);
 	}
 
 	public Pergunta getPergunta() {

@@ -29,7 +29,7 @@ public class RoleBean implements Serializable {
 	public RoleBean() {
 		super();
 		role = new Role();
-		roleDAO = new GenericDaoHibernateImpl<Role>();
+		roleDAO = new GenericDaoHibernateImpl<Role>(Role.class);
 	}
 
 	public Role getRole() {
@@ -96,7 +96,7 @@ public class RoleBean implements Serializable {
 
 	public List<SelectItem> getRoleSelect() {
 		List<SelectItem> list = new ArrayList<SelectItem>();
-		GenericDaoHibernateImpl<Role> roleDao = new GenericDaoHibernateImpl<Role>();
+		GenericDaoHibernateImpl<Role> roleDao = new GenericDaoHibernateImpl<Role>(Role.class);
 		List<Role> roles = roleDao.listAll(Role.class);
 		for (Role r : roles) {
 			list.add(new SelectItem(r, r.toString()));

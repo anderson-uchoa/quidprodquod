@@ -1,7 +1,6 @@
 package br.com.alexegidio.dao;
 
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -19,14 +18,11 @@ public class GenericDaoHibernateImpl<T> implements GenericDao<T>, Serializable {
 	private static final long serialVersionUID = 1L;
 	private Class<T> domainClass;
 
-	public GenericDaoHibernateImpl() {
-		// domainClass = type;
+	public GenericDaoHibernateImpl(Class<T> type) {
+		domainClass = type;
 	}
 
-	@SuppressWarnings("unchecked")
 	public Class<T> getDomainClass() {
-		this.domainClass = (Class<T>) ((ParameterizedType) getClass()
-				.getGenericSuperclass()).getActualTypeArguments()[0];
 		return domainClass;
 	}
 
