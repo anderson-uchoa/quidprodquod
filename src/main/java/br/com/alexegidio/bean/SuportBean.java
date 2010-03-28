@@ -22,13 +22,11 @@ public class SuportBean {
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> getTagSelect() {
 		List<SelectItem> list = new ArrayList<SelectItem>();
-		List<Tag> tags = new GenericDaoHibernateImpl().listAll(Tag.class);
+		List<Tag> tags = new GenericDaoHibernateImpl(Tag.class).listAll(Tag.class);
 		for (Tag t : tags) {
 			list.add(new SelectItem(t, t.toString()));
 		}
 		return list;
 	}
-
-	
 
 }

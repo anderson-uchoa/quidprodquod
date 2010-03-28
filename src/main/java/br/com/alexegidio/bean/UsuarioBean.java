@@ -27,7 +27,7 @@ public class UsuarioBean implements Serializable {
 	public UsuarioBean() {
 		super();
 		usuario = new Usuario();
-		usuarioDAO = new GenericDaoHibernateImpl<Usuario>();
+		usuarioDAO = new GenericDaoHibernateImpl<Usuario>(Usuario.class);
 	}
 
 	public Usuario getUsuario() {
@@ -112,6 +112,12 @@ public class UsuarioBean implements Serializable {
 	public void prepareUpdate() {
 		Long id = Long.parseLong(idEntity);
 		setUsuario(load(id));
+	}
+	
+	public void remove() {
+		Long id = Long.parseLong(idEntity);
+		usuarioDAO.delete(load(id));
+		listAll();
 	}
 
 }

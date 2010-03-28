@@ -22,7 +22,7 @@ public class TagBean implements Serializable {
 	public TagBean() {
 		super();
 		tag = new Tag();
-		tagDAO = new GenericDaoHibernateImpl<Tag>();
+		tagDAO = new GenericDaoHibernateImpl<Tag>(Tag.class);
 	}
 
 	public Tag getTag() {

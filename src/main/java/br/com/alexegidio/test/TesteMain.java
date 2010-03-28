@@ -10,7 +10,8 @@ public class TesteMain {
 	 */
 	public static void main(String[] args) {
 
-		GenericDaoHibernateImpl<Usuario> usuDao = new GenericDaoHibernateImpl<Usuario>();
+		GenericDaoHibernateImpl<Usuario> usuDao = new GenericDaoHibernateImpl<Usuario>(
+				Usuario.class);
 
 		System.out.println(usuDao.getDomainClass());
 	}
