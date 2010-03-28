@@ -29,6 +29,9 @@ public class Pergunta implements BaseEntity, Serializable {
 	private Boolean bloqueado;
 	
 	@OneToMany
+	private List<Resposta> respostas;
+	
+	@OneToMany
 	private List<Tag> tags;
 
 	public Long getId() {
@@ -88,6 +91,17 @@ public class Pergunta implements BaseEntity, Serializable {
 
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
+	}
+
+	public void setRespostas(List<Resposta> respostas) {
+		this.respostas = respostas;
+	}
+
+	public List<Resposta> getRespostas() {
+		if (respostas == null) {
+			respostas = new ArrayList<Resposta>();
+		}
+		return respostas;
 	}
 
 }

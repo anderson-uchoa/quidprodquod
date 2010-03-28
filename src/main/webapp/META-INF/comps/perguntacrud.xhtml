@@ -12,6 +12,13 @@
 	</head>
 	<body>
 	<a4j:form id="form">
+		<a4j:keepAlive beanName="perguntaBean"></a4j:keepAlive>
+		<h:messages id="mensagens" globalOnly="true"></h:messages>
+		<a4j:status id="status">
+			<f:facet name="start">
+				<h:graphicImage value="themes/default/images/busy.gif" />
+			</f:facet>
+		</a4j:status>
 	*Titulo:
 	<h:inputText id="tfTitulo" value="#{perguntaBean.pergunta.titulo}"
 			required="true" requiredMessage="Campo Obrigatório">
@@ -36,18 +43,21 @@
 		<br />
 	Tags:
 	<rich:dataTable border="1" id="table"
-			value="#{perguntaBean.pergunta.tags}" var="item" rows="10">
-			<rich:column id="column1">
-				<f:facet name="header">Nome</f:facet>
-				<h:outputText id="nomeItem" value="#{item.nome}" />
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">Excluir</f:facet>
-				<a4j:commandLink value="Excluir">
-				</a4j:commandLink>
-			</rich:column>
-		</rich:dataTable>
-		<br />
+		value="#{perguntaBean.pergunta.tags}" var="item" rows="10">
+		<rich:column id="column1">
+			<f:facet name="header">Nome</f:facet>
+			<h:outputText id="nomeItem" value="#{item.nome}" />
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">Excluir</f:facet>
+			<a4j:commandLink value="Excluir">
+			</a4j:commandLink>
+		</rich:column>
+	</rich:dataTable>
+	<br />
+	<a4j:commandButton id="btSalvar" value="salvar" type="submit"
+		action="#{perguntaBean.save}" reRender="form">
+	</a4j:commandButton>
 	</a4j:form>
 	</body>
 </ui:composition>
