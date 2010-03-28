@@ -92,7 +92,7 @@ public class PerguntaBean implements Serializable {
 	}
 
 	public List<Pergunta> getLastQuestions() {
-		return lastQuestions = perguntaDAO.listAll(Pergunta.class);
+		return lastQuestions = perguntaDAO.listAll(false, "dataEnvio", 10);
 	}
 
 	public void setLastQuestions(List<Pergunta> lastQuestions) {

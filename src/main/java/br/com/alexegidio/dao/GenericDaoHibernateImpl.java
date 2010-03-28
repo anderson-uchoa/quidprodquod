@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.alexegidio.persistence.HibernateUtil;
@@ -80,6 +81,26 @@ public class GenericDaoHibernateImpl<T> implements GenericDao<T>, Serializable {
 		Criteria criteria = getSession().createCriteria(getDomainClass());
 		return criteria.list();
 
+	}
+	
+	/**
+	 * 
+	 * @param asc ordenar ascendente ou descendente
+	 * @param order propriedade de ordenacao
+	 * @param limit o numero maximo de resultados
+	 * @return uma List de domainClass
+	 */
+	@SuppressWarnings("unchecked")
+	public List<T> listAll(boolean asc, String order, int limit) {
+		
+		Criteria criteria = getSession().createCriteria(getDomainClass());
+		if (asc) {
+			criteria.addOrder(Order.asc(order));
+		} else {
+			criteria.addOrder(Order.desc(order));
+		}
+		criteria.setMaxResults(10);
+		return criteria.list();
 	}
 
 }
