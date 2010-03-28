@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Resposta implements BaseEntity, Serializable {
@@ -14,7 +15,7 @@ public class Resposta implements BaseEntity, Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -23,6 +24,8 @@ public class Resposta implements BaseEntity, Serializable {
 	private String resposta;
 	private Boolean melhorResposta;
 	private Date dataResposta;
+	@OneToOne
+	private Pergunta pergunta;
 
 	public Long getId() {
 		return id;
@@ -54,6 +57,14 @@ public class Resposta implements BaseEntity, Serializable {
 
 	public void setMelhorResposta(Boolean melhorResposta) {
 		this.melhorResposta = melhorResposta;
+	}
+
+	public Pergunta getPergunta() {
+		return pergunta;
+	}
+
+	public void setPergunta(Pergunta pergunta) {
+		this.pergunta = pergunta;
 	}
 
 }

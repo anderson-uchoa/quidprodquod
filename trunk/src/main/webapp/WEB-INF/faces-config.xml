@@ -98,19 +98,21 @@
 		</navigation-case>
 	</navigation-rule>
 
-	<navigation-rule>
-		<from-view-id>/*</from-view-id>
-		<navigation-case>
-			<from-outcome>logout</from-outcome>
-			<to-view-id>/home.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
+	
 
-	<!-- Navigation Rules for menu -->
+	<!-- Navigation Rules for menu geral -->
 	<navigation-rule>
 		<from-view-id>/*</from-view-id>
 		<navigation-case>
 			<from-outcome>home</from-outcome>
+			<to-view-id>/home.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
 			<to-view-id>/home.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
@@ -123,6 +125,7 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<!-- Regras de navegacao menuadmin -->
 	<navigation-rule>
 		<from-view-id>/admin/*</from-view-id>
 		<navigation-case>
@@ -140,13 +143,16 @@
 	</navigation-rule>
 
 	<navigation-rule>
-		<from-view-id>/*</from-view-id>
+		<from-view-id>/admin/*</from-view-id>
 		<navigation-case>
-			<from-outcome>tags</from-outcome>
-			<to-view-id>/tags.xhtml</to-view-id>
+			<from-outcome>tag</from-outcome>
+			<to-view-id>/admin/tag.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-
+	
+	<!-- Fim regras navegacao menuadmin  -->
+	
+	<!-- Navigation Rules menu_user -->
 	<navigation-rule>
 		<from-view-id>/user/*</from-view-id>
 		<navigation-case>
@@ -155,7 +161,7 @@
 		</navigation-case>
 	</navigation-rule>
 	
-	<!-- fim Navigation Rules for menu-->
+	<!-- fim Navigation Rules for menu_user-->
 
 	<lifecycle>
 		<!-- Phase Listeners -->

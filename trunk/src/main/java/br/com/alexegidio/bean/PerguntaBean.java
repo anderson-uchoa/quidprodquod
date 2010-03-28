@@ -1,6 +1,7 @@
 package br.com.alexegidio.bean;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 
 import br.com.alexegidio.dao.GenericDaoHibernateImpl;
@@ -18,6 +19,7 @@ public class PerguntaBean implements Serializable {
 	private GenericDaoHibernateImpl<Pergunta> perguntaDAO;
 	private Tag tag;
 	private List<Pergunta> list;
+	private List<Pergunta> lastQuestions;
 
 	public PerguntaBean() {
 		super();
@@ -25,7 +27,6 @@ public class PerguntaBean implements Serializable {
 		perguntaDAO = new GenericDaoHibernateImpl<Pergunta>(Pergunta.class);
 	}
 
-	/******* G&S *********************/
 	public Pergunta getPergunta() {
 		return pergunta;
 	}
@@ -50,10 +51,21 @@ public class PerguntaBean implements Serializable {
 		this.list = list;
 	}
 
-	/***** GS ***************/
+	// Fim getter and setters
 
 	public void save() {
-		perguntaDAO.save(pergunta);
+		getPergunta().setDataEnvio(Calendar.getInstance().getTime());
+		try {
+			perguntaDAO.save(getPergunta());
+			listAll();
+			FacesUtil.getInstance().sendMessageInfo(
+					"Registro incluído com sucesso.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			FacesUtil.getInstance().sendMessageError(
+					"Erro ao incluir o registro." + e);
+		}
+		setPergunta(new Pergunta());
 	}
 
 	public void delete() {
@@ -70,12 +82,21 @@ public class PerguntaBean implements Serializable {
 
 		} else {
 			if (pergunta.getTags().size() >= 3) {
-				FacesUtil.getInstance().sendMessageError("Você pode adicionar somente 3 tags");
+				FacesUtil.getInstance().sendMessageError(
+						"Você pode adicionar somente 3 tags");
 			} else {
 				pergunta.getTags().add(tag);
-				tag = new Tag();
 			}
 		}
 
 	}
+
+	public List<Pergunta> getLastQuestions() {
+		return lastQuestions = perguntaDAO.listAll(Pergunta.class);
+	}
+
+	public void setLastQuestions(List<Pergunta> lastQuestions) {
+		this.lastQuestions = lastQuestions;
+	}
+
 }

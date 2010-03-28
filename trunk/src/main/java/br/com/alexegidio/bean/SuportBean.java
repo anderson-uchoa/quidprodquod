@@ -6,6 +6,7 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import br.com.alexegidio.dao.GenericDaoHibernateImpl;
+import br.com.alexegidio.model.Pergunta;
 import br.com.alexegidio.model.Tag;
 
 /**
@@ -15,8 +16,13 @@ import br.com.alexegidio.model.Tag;
  */
 public class SuportBean {
 
+	private final GenericDaoHibernateImpl<Pergunta> perguntaDao;
+	private List<Pergunta> lastQuestions;
+	
 	public SuportBean() {
 		super();
+		perguntaDao = new GenericDaoHibernateImpl<Pergunta>(Pergunta.class);
+		lastQuestions = perguntaDao.listAll(Pergunta.class);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -29,4 +35,14 @@ public class SuportBean {
 		return list;
 	}
 
+	public List<Pergunta> getLastQuestions() {
+		//lastQuestions  = perguntaDao.listAll(Pergunta.class);
+		return lastQuestions;
+	}
+
+	public void setLastQuestions(List<Pergunta> lastQuestions) {
+		this.lastQuestions = lastQuestions;
+	}
+	
+	
 }

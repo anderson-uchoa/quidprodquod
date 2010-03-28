@@ -31,13 +31,12 @@ public class GenericDaoHibernateImpl<T> implements GenericDao<T>, Serializable {
 	}
 
 	public void save(T o) {
-		HibernateUtil.getSessionFactory().getCurrentSession().save(o);
+		getSession().save(o);
 	}
 
 	@SuppressWarnings("unchecked")
 	public T load(Class clazz, Integer id) {
-		return (T) HibernateUtil.getSessionFactory().getCurrentSession().get(
-				clazz, id);
+		return (T) getSession().get(clazz, id);
 	}
 
 	public void update(T o) {
@@ -45,7 +44,7 @@ public class GenericDaoHibernateImpl<T> implements GenericDao<T>, Serializable {
 	}
 
 	public void delete(T o) {
-		HibernateUtil.getSessionFactory().getCurrentSession().delete(o);
+		getSession().delete(o);
 
 	}
 
@@ -55,18 +54,15 @@ public class GenericDaoHibernateImpl<T> implements GenericDao<T>, Serializable {
 
 	@SuppressWarnings("unchecked")
 	public T load(Long id) {
-		Criteria criteria = HibernateUtil.getSessionFactory()
-				.getCurrentSession().createCriteria(getDomainClass());
+		Criteria criteria = getSession().createCriteria(getDomainClass());
 		criteria.add(Restrictions.eq("id", id));
-		// return (T) getSession().load(getDomainClass(), id);
 		return (T) criteria.uniqueResult();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<T> listByCriteria(Class<T> clazz, Example exampleObject) {
 
-		Criteria criteria = HibernateUtil.getSessionFactory()
-				.getCurrentSession().createCriteria(clazz);
+		Criteria criteria = getSession().createCriteria(clazz);
 		criteria.add(exampleObject);
 		return criteria.list();
 	}
@@ -74,16 +70,14 @@ public class GenericDaoHibernateImpl<T> implements GenericDao<T>, Serializable {
 	@SuppressWarnings("unchecked")
 	public T findByCriteria(Class<T> clazz, Example exampleObject) {
 
-		Criteria criteria = HibernateUtil.getSessionFactory()
-				.getCurrentSession().createCriteria(clazz);
+		Criteria criteria = getSession().createCriteria(clazz);
 		criteria.add(exampleObject);
 		return (T) criteria.uniqueResult();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<T> listAll(Class clazz) {
-		Criteria criteria = HibernateUtil.getSessionFactory()
-				.getCurrentSession().createCriteria(clazz);
+		Criteria criteria = getSession().createCriteria(getDomainClass());
 		return criteria.list();
 
 	}
