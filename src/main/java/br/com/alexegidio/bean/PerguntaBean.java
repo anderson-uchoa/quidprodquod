@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import br.com.alexegidio.dao.GenericDaoHibernateImpl;
+import br.com.alexegidio.jsf.util.FacesUtil;
 import br.com.alexegidio.model.Pergunta;
 import br.com.alexegidio.model.Tag;
 
@@ -61,6 +62,20 @@ public class PerguntaBean implements Serializable {
 
 	public void listAll() {
 		list = perguntaDAO.listAll(Pergunta.class);
+	}
+
+	public void addTag() {
+		if (tag == null) {
+			FacesUtil.getInstance().sendMessageError("Informe uma Tag");
+
+		} else {
+			if (pergunta.getTags().size() >= 3) {
+				FacesUtil.getInstance().sendMessageError("Você pode adicionar somente 3 tags");
+			} else {
+				pergunta.getTags().add(tag);
+				tag = new Tag();
+			}
+		}
 
 	}
 }

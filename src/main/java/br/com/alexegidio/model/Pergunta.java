@@ -1,6 +1,7 @@
 package br.com.alexegidio.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -79,6 +80,9 @@ public class Pergunta implements BaseEntity, Serializable {
 	}
 
 	public List<Tag> getTags() {
+		if (tags == null) {
+			tags = new ArrayList<Tag>();
+		}
 		return tags;
 	}
 

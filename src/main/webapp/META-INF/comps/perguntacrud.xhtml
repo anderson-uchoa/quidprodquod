@@ -15,21 +15,39 @@
 	*Titulo:
 	<h:inputText id="tfTitulo" value="#{perguntaBean.pergunta.titulo}"
 			required="true" requiredMessage="Campo Obrigatório">
-	</h:inputText>
-	
-	<br />
+		</h:inputText>
+
+		<br />
 	*Descrição:
-	<h:inputTextArea id="tfDescricao" value="descricao" required="true"
+	<h:inputTextarea id="tfDescricao"
+			value="#{perguntaBean.pergunta.descricao}" required="true"
 			requiredMessage="Campo obrigatório">
-	</h:inputTextArea>
-	<br />
+		</h:inputTextarea>
+		<br />
 	Tags:
 	<h:selectOneMenu id="tag" converter="genericConverter"
 			value="#{perguntaBean.tag}" required="true"
 			requiredMessage="Campo obrigatório">
-		<f:selectItem itemLabel="Escolha" />
-		<f:selectItems value="#{suportBean.tagSelect}" />
-	</h:selectOneMenu>
+			<f:selectItem itemLabel="Escolha" />
+			<f:selectItems value="#{suportBean.tagSelect}" />
+		</h:selectOneMenu>
+		<a4j:commandButton action="#{perguntaBean.addTag}" reRender="form"
+			value="Adicionar Tags" />
+		<br />
+	Tags:
+	<rich:dataTable border="1" id="table"
+			value="#{perguntaBean.pergunta.tags}" var="item" rows="10">
+			<rich:column id="column1">
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText id="nomeItem" value="#{item.nome}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Excluir</f:facet>
+				<a4j:commandLink value="Excluir">
+				</a4j:commandLink>
+			</rich:column>
+		</rich:dataTable>
+		<br />
 	</a4j:form>
 	</body>
 </ui:composition>
