@@ -19,7 +19,7 @@ public class PerguntaBean implements Serializable {
 	private GenericDaoHibernateImpl<Pergunta> perguntaDAO;
 	private Tag tag;
 	private List<Pergunta> list;
-	private List<Pergunta> lastQuestions;
+	private String idPerguntaSelecionada;
 
 	public PerguntaBean() {
 		super();
@@ -49,6 +49,14 @@ public class PerguntaBean implements Serializable {
 
 	public void setList(List<Pergunta> list) {
 		this.list = list;
+	}
+
+	public String getIdPerguntaSelecionada() {
+		return idPerguntaSelecionada;
+	}
+
+	public void setIdPerguntaSelecionada(String idPerguntaSelecionada) {
+		this.idPerguntaSelecionada = idPerguntaSelecionada;
 	}
 
 	// Fim getter and setters
@@ -92,11 +100,8 @@ public class PerguntaBean implements Serializable {
 	}
 
 	public List<Pergunta> getLastQuestions() {
-		return lastQuestions = perguntaDAO.listAll(false, "dataEnvio", 10);
+		return perguntaDAO.listAll(false, "dataEnvio", 10);
 	}
-
-	public void setLastQuestions(List<Pergunta> lastQuestions) {
-		this.lastQuestions = lastQuestions;
-	}
+	
 
 }

@@ -17,6 +17,10 @@
 			<div id="headerimg">
 				<h1><a href="http://wordpress.freelayouts.com/">Quid Pro Quod</a></h1>
 				<div class="description">Sistema Colaborativo</div>
+				<div class="description">
+					<h:outputText value="Olá:" rendered="#{authenticatorBean.logado}"/>
+					<h:outputText value="#{authenticatorBean.usuario.login}" rendered="#{authenticatorBean.logado}"/>
+				</div>
 			</div>
 			<div id="top-menu">
 				<ul>
