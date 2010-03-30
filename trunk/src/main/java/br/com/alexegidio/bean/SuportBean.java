@@ -6,7 +6,6 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import br.com.alexegidio.dao.GenericDaoHibernateImpl;
-import br.com.alexegidio.model.Pergunta;
 import br.com.alexegidio.model.Tag;
 
 /**

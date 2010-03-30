@@ -32,7 +32,7 @@ public class GenericDaoHibernateImpl<T> implements GenericDao<T>, Serializable {
 	}
 
 	public void save(T o) {
-		getSession().save(o);
+		getSession().saveOrUpdate(o);
 	}
 
 	@SuppressWarnings("unchecked")

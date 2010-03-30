@@ -58,6 +58,15 @@
 		</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
+	
+	<!-- TODO verificar necessidadae -->
+	<managed-bean>
+		<managed-bean-name>respostaBean</managed-bean-name>
+		<managed-bean-class>
+			br.com.alexegidio.bean.RespostaBean
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
 
 	<managed-bean>
 		<managed-bean-name>suportBean</managed-bean-name>
@@ -97,8 +106,17 @@
 			<to-view-id>/login.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-
 	
+	<!-- navigation rules for perguntaBean -->
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>answer</from-outcome>
+			<to-view-id>/user/resposta.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- end navigation rules for perguntaBean -->
 
 	<!-- Navigation Rules for menu geral -->
 	<navigation-rule>
@@ -138,7 +156,7 @@
 		<from-view-id>/admin/*</from-view-id>
 		<navigation-case>
 			<from-outcome>usuario</from-outcome>
-			<to-view-id>/usuario.xhtml</to-view-id>
+			<to-view-id>/admin/usuario.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
@@ -147,6 +165,14 @@
 		<navigation-case>
 			<from-outcome>tag</from-outcome>
 			<to-view-id>/admin/tag.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/admin/*</from-view-id>
+		<navigation-case>
+			<from-outcome>role</from-outcome>
+			<to-view-id>/admin/role.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	
