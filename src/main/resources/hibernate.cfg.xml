@@ -20,7 +20,7 @@
         </property>
 		<property name="hibernate.format_sql">true
         </property>
-        
+
 		<!-- session properties -->
 		<property name="hibernate.current_session_context_class">
 			org.hibernate.context.ThreadLocalSessionContext

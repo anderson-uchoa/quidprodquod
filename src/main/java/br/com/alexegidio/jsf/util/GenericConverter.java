@@ -20,7 +20,7 @@ public class GenericConverter implements Converter {
 
 	public String getAsString(FacesContext arg0, UIComponent component,
 			Object value) throws ConverterException {
-		if (value != null && !"".equals(value)) {
+		if ((value != null) && !("".equals(value))) {
 
 			Object entity = (Object) value;
 

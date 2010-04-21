@@ -19,6 +19,7 @@
 			var="item" rows="10" type="disc">
 			<h:outputText value="#{item.titulo}" />
 			<h:outputText value="#{item.dataEnvio}" />
+			<h:outputText value="-#{item.quantidadeRespostas} Resposta(s)" />
 			<h:commandLink action="#{respostaBean.answer}">
 				Responder
 				<f:setPropertyActionListener value="#{item.id}" 

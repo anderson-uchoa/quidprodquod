@@ -55,7 +55,8 @@ public class AuthenticatorBean implements Serializable {
 	}
 
 	public boolean isAdmin() {
-		if (usuario.getRole().getNome() != null && usuario.getRole().getNome().equals("ADMIN")) {
+		if (usuario.getRole().getNome() != null
+				&& usuario.getRole().getNome().equals("ADMIN")) {
 			admin = true;
 		}
 		return admin;
@@ -65,8 +66,8 @@ public class AuthenticatorBean implements Serializable {
 
 		Example userExample = Example.create(usuario);
 		userExample.excludeZeroes();
-		//usuario.setSenha(Criptography.encryptString(usuario.getSenha()));
-		
+		usuario.setSenha(Criptography.encryptString(usuario.getSenha()));
+
 		usuario = userDao.findByCriteria(Usuario.class, userExample);
 		String retorno = "fail";
 		if (usuario == null) {

@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -15,16 +15,14 @@ public class Usuario extends Pessoa {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(unique = true)
 	private String login;
-	
 	private String senha;
-	
 	private String ranking;
-	
-	@OneToOne
+
+	@ManyToOne
 	private Role role;
 
+	@Column(unique = true)
 	public String getLogin() {
 		return login;
 	}
@@ -48,7 +46,7 @@ public class Usuario extends Pessoa {
 	public void setRanking(String ranking) {
 		this.ranking = ranking;
 	}
-	
+
 	public Role getRole() {
 		if (role == null) {
 			role = new Role();
@@ -59,6 +57,5 @@ public class Usuario extends Pessoa {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
-	
+
 }

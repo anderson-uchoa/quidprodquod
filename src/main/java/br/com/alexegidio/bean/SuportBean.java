@@ -6,6 +6,7 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import br.com.alexegidio.dao.GenericDaoHibernateImpl;
+import br.com.alexegidio.model.Role;
 import br.com.alexegidio.model.Tag;
 
 /**
@@ -15,7 +16,6 @@ import br.com.alexegidio.model.Tag;
  */
 public class SuportBean {
 
-	
 	public SuportBean() {
 		super();
 	}
@@ -23,9 +23,21 @@ public class SuportBean {
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> getTagSelect() {
 		List<SelectItem> list = new ArrayList<SelectItem>();
-		List<Tag> tags = new GenericDaoHibernateImpl(Tag.class).listAll(Tag.class);
+		List<Tag> tags = new GenericDaoHibernateImpl(Tag.class)
+				.listAll(Tag.class);
 		for (Tag t : tags) {
 			list.add(new SelectItem(t, t.toString()));
+		}
+		return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> getRoleSelect() {
+		List<SelectItem> list = new ArrayList<SelectItem>();
+		List<Role> roles = new GenericDaoHibernateImpl(Role.class)
+				.listAll(Role.class);
+		for (Role r : roles) {
+			list.add(new SelectItem(r, r.toString()));
 		}
 		return list;
 	}
