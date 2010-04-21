@@ -33,4 +33,5 @@ public class FacesUtil {
 		fm.setSummary(msg);
 		FacesContext.getCurrentInstance().addMessage(null, fm);
 	}
+	
 }

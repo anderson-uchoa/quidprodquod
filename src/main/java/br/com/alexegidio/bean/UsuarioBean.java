@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.alexegidio.dao.GenericDaoHibernateImpl;
+import br.com.alexegidio.jsf.util.Criptography;
 import br.com.alexegidio.jsf.util.FacesUtil;
 import br.com.alexegidio.model.Usuario;
 
@@ -72,8 +73,12 @@ public class UsuarioBean implements Serializable {
 	}
 
 	public void save() {
+
 		if (usuario.getSenha().equals(senhaConfirmacao)) {
 			try {
+				usuario
+						.setSenha(Criptography
+								.encryptString(usuario.getSenha()));
 				usuarioDAO.save(usuario);
 				listAll();
 				FacesUtil.getInstance().sendMessageInfo(
@@ -113,7 +118,7 @@ public class UsuarioBean implements Serializable {
 		Long id = Long.parseLong(idEntity);
 		setUsuario(load(id));
 	}
-	
+
 	public void remove() {
 		Long id = Long.parseLong(idEntity);
 		usuarioDAO.delete(load(id));

@@ -17,16 +17,16 @@ public class Resposta implements BaseEntity, Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	private String resposta;
 	private Boolean melhorResposta;
 	private Date dataResposta;
-	@OneToOne
+
 	private Pergunta pergunta;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	public Long getId() {
 		return id;
 	}
@@ -59,6 +59,7 @@ public class Resposta implements BaseEntity, Serializable {
 		this.melhorResposta = melhorResposta;
 	}
 
+	@OneToOne
 	public Pergunta getPergunta() {
 		return pergunta;
 	}

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,22 +19,16 @@ public class Pergunta implements BaseEntity, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-
 	private String titulo;
 	private String descricao;
 	private Date dataEnvio;
 	private Boolean bloqueado;
-	
-	@OneToMany
 	private List<Resposta> respostas;
-	
-	@OneToMany
 	private List<Tag> tags;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	public Long getId() {
 		return id;
 	}
@@ -75,13 +70,22 @@ public class Pergunta implements BaseEntity, Serializable {
 	}
 
 	public Integer getQuantidadeRespostas() {
-		return null;
+		return getRespostas().size();
+	}
+
+	public void setQuantidadeRespostas(Integer quantidade) {
+
 	}
 
 	public Integer getViews() {
 		return null;
 	}
 
+	public void setViews(Integer views) {
+		
+	}
+
+	@OneToMany
 	public List<Tag> getTags() {
 		if (tags == null) {
 			tags = new ArrayList<Tag>();
@@ -97,6 +101,7 @@ public class Pergunta implements BaseEntity, Serializable {
 		this.respostas = respostas;
 	}
 
+	@OneToMany(cascade= CascadeType.ALL)
 	public List<Resposta> getRespostas() {
 		if (respostas == null) {
 			respostas = new ArrayList<Resposta>();

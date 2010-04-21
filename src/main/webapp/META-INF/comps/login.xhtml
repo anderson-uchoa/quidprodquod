@@ -11,8 +11,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a4j:form id="form">
-	<a href="usuario.jsf">Cadastre-se</a>
+<h:form id="form">
+	<a href="usuariocadastro.jsf">Cadastre-se</a>
 	<br />
 	<h:messages id="mensagens" globalOnly="true"></h:messages>
 	*Login:<h:inputText id="login"
@@ -29,6 +29,6 @@
 	<br />
 	<a4j:commandButton action="#{authenticatorBean.autenthicate}"
 		reRender="form" value="Entrar" />
-</a4j:form>
+</h:form>
 </body>
 </html>

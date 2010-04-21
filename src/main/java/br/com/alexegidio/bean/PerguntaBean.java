@@ -102,6 +102,6 @@ public class PerguntaBean implements Serializable {
 	public List<Pergunta> getLastQuestions() {
 		return perguntaDAO.listAll(false, "dataEnvio", 10);
 	}
-	
+
 
 }

@@ -50,6 +50,9 @@ public class Usuario extends Pessoa {
 	}
 	
 	public Role getRole() {
+		if (role == null) {
+			role = new Role();
+		}
 		return role;
 	}
 
