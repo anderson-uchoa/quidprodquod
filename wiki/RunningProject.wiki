@@ -9,8 +9,8 @@ You must have a PostgreSQL 8.x installed on your computer.
 
 = Details =
 
-Create a database and edit the file *hibernate.cfg.xml* setting this properties with correct values of your DB:<br/>
+Create a database and edit the *hibernate.cfg.xml* setting this properties with correct values of your DB:<br/>
 <br/>
-*_"hibernate.connection.password"_ <br/>
-*_"hibernate.connection.url"_ <br/>
-*_"hibernate.connection.username"_ <br/>
+* _"hibernate.connection.password"_ <br/>
+* _"hibernate.connection.url"_ <br/>
+* _"hibernate.connection.username"_ <br/>
