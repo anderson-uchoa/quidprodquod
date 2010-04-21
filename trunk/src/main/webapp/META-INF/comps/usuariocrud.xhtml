@@ -69,16 +69,16 @@
 		</h:inputSecret>
 		<rich:message for="confirmaSenha" />
 		<br />
-		 *Role:
+		 <h:outputText value ="*Role:" rendered="#{authenticatorBean.admin}"/>
 		 <h:selectOneMenu id="role" value="#{usuarioBean.usuario.role}"
 			converter="genericConverter" required="true"
-			requiredMessage="Campo obrigatório">
+			requiredMessage="Campo obrigatório" rendered="#{authenticatorBean.admin}">
 			<f:selectItem itemLabel="Escolha" />
 			<f:selectItems value="#{roleBean.roleSelect}" />
 		</h:selectOneMenu>
 		<br />
 		<a4j:commandButton id="salvar" value="salvar" type="submit"
-			action="#{usuarioBean.save}" reRender="tabPanel">
+			action="#{usuarioBean.save}" reRender="tabPanel,form">
 		</a4j:commandButton>
 
 	</a4j:form>

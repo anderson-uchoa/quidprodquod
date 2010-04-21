@@ -10,12 +10,28 @@
 	<title>Insert title here</title>
 	</head>
 	<body>
-		<h:outputText id="lbPergunta" value="#{perguntaBean.pergunta.titulo}" />
-		<rich:dataList id="list" value="#{perguntaBean.pergunta.respostas}"
+	<a4j:form id="formAnswer">
+		<a4j:keepAlive beanName="respostaBean"></a4j:keepAlive>
+		<h:outputText id="lbPergunta" value="#{respostaBean.pergunta.titulo}" />
+		<br/>
+		<h:outputText
+			value="#{respostaBean.pergunta.quantidadeRespostas} Resposta(s)" />
+		<rich:dataList id="list" value="#{respostaBean.pergunta.respostas}"
 			var="item" rows="10" type="title">
 			<h:outputText value="#{item.resposta}" />
-			<h:commandLink>aprova</h:commandLink>
-			<h:commandLink>desaprova</h:commandLink>
+			<h:commandLink> aprova </h:commandLink>
+			<h:commandLink> desaprova </h:commandLink>
 		</rich:dataList>
+		<br/>
+			Responder
+			<br />
+		<h:inputTextarea id="tfDescricao"
+			value="#{respostaBean.resposta.resposta}" required="true"
+			requiredMessage="Campo obrigatório">
+		</h:inputTextarea>
+		<br />
+		<a4j:commandButton action="#{respostaBean.submitAnswer}"
+			reRender="formAnswer" value="Salvar" />
+	</a4j:form>
 	</body>
 </ui:composition>

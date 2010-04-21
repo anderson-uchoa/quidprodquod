@@ -9,12 +9,15 @@ import javax.faces.model.SelectItem;
 import br.com.alexegidio.dao.GenericDaoHibernateImpl;
 import br.com.alexegidio.jsf.util.FacesUtil;
 import br.com.alexegidio.model.Pergunta;
+import br.com.alexegidio.model.Resposta;
 import br.com.alexegidio.model.Role;
 
 /**
  * 
  * @author alexegidio@yahoo.com.br
- * 
+ * @date 21/04/2010
+ * @since version 1.0
+ * @version 1.0
  */
 public class RespostaBean implements Serializable {
 
@@ -26,14 +29,17 @@ public class RespostaBean implements Serializable {
 	private String idEntity;
 	private final GenericDaoHibernateImpl<Pergunta> perguntaDAO;
 	private List<Pergunta> list;
+	private Resposta resposta;
 
 	public RespostaBean() {
 		super();
-		pergunta = new Pergunta();
 		perguntaDAO = new GenericDaoHibernateImpl<Pergunta>(Pergunta.class);
 	}
 
 	public Pergunta getPergunta() {
+		if (pergunta == null) {
+			pergunta = new Pergunta();
+		}
 		return pergunta;
 	}
 
@@ -52,6 +58,17 @@ public class RespostaBean implements Serializable {
 		this.list = list;
 	}
 
+	public Resposta getResposta() {
+		if (resposta == null) {
+			resposta = new Resposta();
+		}
+		return resposta;
+	}
+
+	public void setResposta(Resposta resposta) {
+		this.resposta = resposta;
+	}
+
 	public String getIdEntity() {
 		return idEntity;
 	}
@@ -60,9 +77,11 @@ public class RespostaBean implements Serializable {
 		this.idEntity = idEntity;
 	}
 
+	// *************Fim Getters and Setters**************\\
+
 	public void save() {
 		try {
-			perguntaDAO.save(pergunta);
+			perguntaDAO.save(getPergunta());
 			listAll();
 			FacesUtil.getInstance().sendMessageInfo(
 					"Registro incluído com sucesso.");
@@ -71,7 +90,7 @@ public class RespostaBean implements Serializable {
 			FacesUtil.getInstance().sendMessageError(
 					"Erro ao incluir o registro." + e);
 		}
-		pergunta = new Pergunta();
+		resposta = new Resposta();
 	}
 
 	public void delete() {
@@ -109,5 +128,11 @@ public class RespostaBean implements Serializable {
 	public String answer() {
 		pergunta = perguntaDAO.load(new Long(getIdEntity()));
 		return "answer";
+	}
+
+	public void submitAnswer() {
+		resposta.setPergunta(getPergunta());
+		pergunta.getRespostas().add(getResposta());
+		save();
 	}
 }

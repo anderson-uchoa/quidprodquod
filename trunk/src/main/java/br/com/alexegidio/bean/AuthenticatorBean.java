@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import org.hibernate.criterion.Example;
 
 import br.com.alexegidio.dao.GenericDaoHibernateImpl;
+import br.com.alexegidio.jsf.util.Criptography;
 import br.com.alexegidio.jsf.util.FacesUtil;
 import br.com.alexegidio.model.Usuario;
 
@@ -54,6 +55,9 @@ public class AuthenticatorBean implements Serializable {
 	}
 
 	public boolean isAdmin() {
+		if (usuario.getRole().getNome() != null && usuario.getRole().getNome().equals("ADMIN")) {
+			admin = true;
+		}
 		return admin;
 	}
 
@@ -61,7 +65,8 @@ public class AuthenticatorBean implements Serializable {
 
 		Example userExample = Example.create(usuario);
 		userExample.excludeZeroes();
-
+		//usuario.setSenha(Criptography.encryptString(usuario.getSenha()));
+		
 		usuario = userDao.findByCriteria(Usuario.class, userExample);
 		String retorno = "fail";
 		if (usuario == null) {
@@ -75,7 +80,7 @@ public class AuthenticatorBean implements Serializable {
 			logado = true;
 			if (usuario.getRole().getNome().equals("ADMIN")) {
 				retorno = "admin";
-				admin =  true;
+				admin = true;
 			} else if (usuario.getRole().getNome().equals("USER")) {
 				retorno = "user";
 			}
