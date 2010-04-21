@@ -13,6 +13,7 @@
 	</head>
 	<body>
 	<a4j:form id="form">
+		
 		<h:messages id="mensagens" globalOnly="true"></h:messages>
 		<br />
 				*Nome:
@@ -69,16 +70,17 @@
 		</h:inputSecret>
 		<rich:message for="confirmaSenha" />
 		<br />
-		 <h:outputText value ="*Role:" rendered="#{authenticatorBean.admin}"/>
-		 <h:selectOneMenu id="role" value="#{usuarioBean.usuario.role}"
-			converter="genericConverter" required="true"
+		<h:outputText value="*Role:" rendered="#{authenticatorBean.admin}" />
+
+		<h:selectOneMenu id="cbRole" converter="genericConverter"
+			value="#{usuarioBean.role}" required="true"
 			requiredMessage="Campo obrigatório" rendered="#{authenticatorBean.admin}">
 			<f:selectItem itemLabel="Escolha" />
-			<f:selectItems value="#{roleBean.roleSelect}" />
+			<f:selectItems value="#{suportBean.roleSelect}" />
 		</h:selectOneMenu>
 		<br />
 		<a4j:commandButton id="salvar" value="salvar" type="submit"
-			action="#{usuarioBean.save}" reRender="tabPanel,form">
+			action="#{usuarioBean.save}" reRender="tabPanel">
 		</a4j:commandButton>
 
 	</a4j:form>

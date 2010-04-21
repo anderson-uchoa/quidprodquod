@@ -10,6 +10,7 @@ import java.util.List;
 import br.com.alexegidio.dao.GenericDaoHibernateImpl;
 import br.com.alexegidio.jsf.util.Criptography;
 import br.com.alexegidio.jsf.util.FacesUtil;
+import br.com.alexegidio.model.Role;
 import br.com.alexegidio.model.Usuario;
 
 public class UsuarioBean implements Serializable {
@@ -21,20 +22,32 @@ public class UsuarioBean implements Serializable {
 	private Usuario usuario;
 	private String idEntity;
 	private String senhaConfirmacao;
+	private Role role;
 
 	private GenericDaoHibernateImpl<Usuario> usuarioDAO;
 	private List<Usuario> list;
 
 	public UsuarioBean() {
 		super();
-		usuario = new Usuario();
 		usuarioDAO = new GenericDaoHibernateImpl<Usuario>(Usuario.class);
 	}
 
 	public Usuario getUsuario() {
+		if (usuario == null) {
+			usuario = new Usuario();
+		}
 		return usuario;
 	}
 
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	// ***********fim getters and setters*************\\
 	public Usuario load(Long id) {
 		return usuarioDAO.load(id);
 	}
@@ -74,6 +87,7 @@ public class UsuarioBean implements Serializable {
 
 	public void save() {
 
+		usuario.setRole(getRole());
 		if (usuario.getSenha().equals(senhaConfirmacao)) {
 			try {
 				usuario
@@ -83,12 +97,13 @@ public class UsuarioBean implements Serializable {
 				listAll();
 				FacesUtil.getInstance().sendMessageInfo(
 						"Registro incluído com sucesso.");
+				usuario = new Usuario();
 			} catch (Exception e) {
 				e.printStackTrace();
 				FacesUtil.getInstance().sendMessageError(
 						"Erro ao incluir o registro." + e);
 			}
-			usuario = new Usuario();
+
 		} else {
 			FacesUtil.getInstance().sendMessageError(
 					"As Senhas digitadas devem ser iguais.");

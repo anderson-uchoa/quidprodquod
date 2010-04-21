@@ -16,13 +16,11 @@ public class Tag implements BaseEntity, Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-
-	@Column(unique = true)
 	private String nome;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	public Long getId() {
 		return id;
 	}
@@ -31,6 +29,7 @@ public class Tag implements BaseEntity, Serializable {
 		this.id = id;
 	}
 
+	@Column(unique = true)
 	public String getNome() {
 		return nome;
 	}
