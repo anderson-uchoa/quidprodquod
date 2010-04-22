@@ -58,7 +58,7 @@
 		</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
-	
+
 	<!-- TODO verificar necessidadae -->
 	<managed-bean>
 		<managed-bean-name>respostaBean</managed-bean-name>
@@ -82,6 +82,7 @@
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/page2.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
@@ -91,31 +92,43 @@
 		<navigation-case>
 			<from-outcome>admin</from-outcome>
 			<to-view-id>/admin/adminpage.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>user</from-outcome>
 			<to-view-id>/user/userpage.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
 	<!-- navigation rules for authenticator bean -->
 	<navigation-rule>
-		<from-view-id>/*</from-view-id>
+		<from-view-id>/user/*</from-view-id>
 		<navigation-case>
 			<from-outcome>loginPage</from-outcome>
 			<to-view-id>/login.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+	<navigation-rule>
+		<from-view-id>/admin/*</from-view-id>
+		<navigation-case>
+			<from-outcome>loginPage</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
 	<!-- navigation rules for perguntaBean -->
 	<navigation-rule>
 		<from-view-id>/*</from-view-id>
 		<navigation-case>
 			<from-outcome>answer</from-outcome>
 			<to-view-id>/user/resposta.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<!-- end navigation rules for perguntaBean -->
 
 	<!-- Navigation Rules for menu geral -->
@@ -124,14 +137,16 @@
 		<navigation-case>
 			<from-outcome>home</from-outcome>
 			<to-view-id>/home.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>/*</from-view-id>
 		<navigation-case>
 			<from-outcome>logout</from-outcome>
 			<to-view-id>/home.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
@@ -140,23 +155,26 @@
 		<navigation-case>
 			<from-outcome>login</from-outcome>
 			<to-view-id>/login.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<!-- Regras de navegacao menuadmin -->
 	<navigation-rule>
 		<from-view-id>/admin/*</from-view-id>
 		<navigation-case>
 			<from-outcome>tags</from-outcome>
 			<to-view-id>admin/tag.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>/admin/*</from-view-id>
 		<navigation-case>
 			<from-outcome>usuario</from-outcome>
 			<to-view-id>/admin/usuario.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
@@ -165,46 +183,46 @@
 		<navigation-case>
 			<from-outcome>tag</from-outcome>
 			<to-view-id>/admin/tag.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>/admin/*</from-view-id>
 		<navigation-case>
 			<from-outcome>role</from-outcome>
 			<to-view-id>/admin/role.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<!-- Fim regras navegacao menuadmin  -->
-	
+
 	<!-- Navigation Rules menu_user -->
 	<navigation-rule>
 		<from-view-id>/user/*</from-view-id>
 		<navigation-case>
 			<from-outcome>perguntar</from-outcome>
 			<to-view-id>/user/pergunta.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<!-- fim Navigation Rules for menu_user-->
-	
+
 	<navigation-rule>
 		<from-view-id>/*</from-view-id>
 		<navigation-case>
 			<from-outcome>cadastrarUsuario</from-outcome>
 			<to-view-id>/usuariocadastro.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
 	<lifecycle>
 		<!-- Phase Listeners -->
-		<phase-listener> br.com.alexegidio.jsf.util.OsivPhaseListener
-	</phase-listener>
-		<!--
-			phase-listener> br.com.alexegidio.jsf.util.AuthenticatorListener
-			</phase-listener
-		-->
+		<phase-listener>br.com.alexegidio.jsf.util.OsivPhaseListener</phase-listener>
+		<phase-listener>br.com.alexegidio.jsf.util.AuthenticatorListener</phase-listener>
 	</lifecycle>
 
 	<!-- Validators -->

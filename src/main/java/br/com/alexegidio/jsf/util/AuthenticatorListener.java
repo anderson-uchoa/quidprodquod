@@ -23,15 +23,33 @@ public class AuthenticatorListener implements PhaseListener {
 				.getExternalContext().getSessionMap().get("usuario");
 
 		boolean isLoginPage = (currentPage.lastIndexOf("login.jsf") > -1);
-		/*if (isLoginPage && currentUser == null) {
-			NavigationHandler nh = context.getApplication()
-					.getNavigationHandler();
-			nh.handleNavigation(context, null, "loginPage");
-
-		} else*/
-		if ((!isLoginPage && currentUser == null)
-				|| (!currentUser.getRole().equals("ADMIN") && currentPage
-						.startsWith("/admin"))) {
+		/*
+		 * boolean securePage = (currentPage.startsWith("/admin") || currentPage
+		 * .startsWith("/user"));
+		 * 
+		 * if (securePage) {
+		 * 
+		 * if (isLoginPage && currentUser == null) { NavigationHandler nh =
+		 * context.getApplication() .getNavigationHandler();
+		 * nh.handleNavigation(context, null, "loginPage");
+		 * 
+		 * } else if ((!currentUser.getRole().equals("ADMIN") && currentPage
+		 * .startsWith("/admin"))) {
+		 * 
+		 * NavigationHandler nh = context.getApplication()
+		 * .getNavigationHandler(); nh.handleNavigation(context, null,
+		 * "loginPage");
+		 * 
+		 * } else if ((!currentUser.getRole().equals("USER") && currentPage
+		 * .startsWith("/user"))) {
+		 * 
+		 * NavigationHandler nh = context.getApplication()
+		 * .getNavigationHandler(); nh.handleNavigation(context, null,
+		 * "loginPage");
+		 * 
+		 * } }
+		 */
+		if (!isLoginPage && currentUser == null) {
 			NavigationHandler nh = context.getApplication()
 					.getNavigationHandler();
 			nh.handleNavigation(context, null, "loginPage");
