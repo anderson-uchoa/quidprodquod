@@ -37,10 +37,31 @@
 					<f:facet name="header">Email</f:facet>
 					<h:outputText value="#{item.email}" />
 				</rich:column>
+				<rich:column id="column5">
+					<f:facet name="header">Role</f:facet>
+					<h:outputText value="#{item.role.nome}" />
+				</rich:column>
 				<rich:column>
 					<f:facet name="header">Alterar</f:facet>
 					<a4j:commandLink id="alterar" value="alterar"
 						action="#{usuarioBean.prepareUpdate}" reRender="tabPanel">
+						<a4j:actionparam name="idAlteracao" value="#{item.id}"
+							assignTo="#{usuarioBean.idEntity}" />
+					</a4j:commandLink>
+				</rich:column>
+				<rich:column rendered="#{!item.bloqueado}">
+					<f:facet name="header">Bloquear</f:facet>
+					<a4j:commandLink id="bloquear" value="bloquear"
+						action="#{usuarioBean.bloquearUsuario}" reRender="tabPanel">
+						<a4j:actionparam name="idAlteracao" value="#{item.id}"
+							assignTo="#{usuarioBean.idEntity}" />
+					</a4j:commandLink>
+				</rich:column>
+				
+				<rich:column rendered="#{item.bloqueado}">
+					<f:facet name="header">Desbloquear</f:facet>
+					<a4j:commandLink id="desbloquear" value="desbloquear"
+						action="#{usuarioBean.desbloquearUsuario}" reRender="tabPanel">
 						<a4j:actionparam name="idAlteracao" value="#{item.id}"
 							assignTo="#{usuarioBean.idEntity}" />
 					</a4j:commandLink>

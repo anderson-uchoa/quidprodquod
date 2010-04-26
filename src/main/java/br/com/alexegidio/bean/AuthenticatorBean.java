@@ -76,14 +76,19 @@ public class AuthenticatorBean implements Serializable {
 			usuario = new Usuario();
 
 		} else {
-			FacesContext.getCurrentInstance().getExternalContext()
-					.getSessionMap().put("usuario", usuario);
-			logado = true;
-			if (usuario.getRole().getNome().equals("ADMIN")) {
-				retorno = "admin";
-				admin = true;
-			} else if (usuario.getRole().getNome().equals("USER")) {
-				retorno = "user";
+			if (usuario.getBloqueado() == true) {
+				FacesUtil.getInstance().sendMessageError(
+				"Esta conta foi bloqueada contate o Administrador do sistema");
+			} else {
+				FacesContext.getCurrentInstance().getExternalContext()
+						.getSessionMap().put("usuario", usuario);
+				logado = true;
+				if (usuario.getRole().getNome().equals("ADMIN")) {
+					retorno = "admin";
+					admin = true;
+				} else if (usuario.getRole().getNome().equals("USER")) {
+					retorno = "user";
+				}
 			}
 		}
 		usuario = new Usuario();
@@ -95,6 +100,10 @@ public class AuthenticatorBean implements Serializable {
 				.remove("usuario");
 		logado = false;
 		return "logout";
+	}
+
+	public Usuario getCurrentUser() {
+		return (Usuario) FacesUtil.getInstance().getSessionObject("usuario");
 	}
 
 }

@@ -7,9 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Role implements BaseEntity, Serializable {
+@SequenceGenerator(name = "seq_role", sequenceName = "seq_role", allocationSize = 1)
+public class Role implements Serializable {
 
 	/**
 	 * 
@@ -17,9 +19,10 @@ public class Role implements BaseEntity, Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String nome;
+	private Boolean admin;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_role")
 	public Long getId() {
 		return id;
 	}
@@ -28,13 +31,21 @@ public class Role implements BaseEntity, Serializable {
 		this.id = id;
 	}
 
-	@Column(unique = true)
+	@Column(unique = true, name = "NOME")
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Boolean getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
 	}
 
 	@Override

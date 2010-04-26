@@ -125,7 +125,6 @@
 		<navigation-case>
 			<from-outcome>answer</from-outcome>
 			<to-view-id>/user/resposta.xhtml</to-view-id>
-			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
@@ -195,7 +194,6 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-
 	<!-- Fim regras navegacao menuadmin  -->
 
 	<!-- Navigation Rules menu_user -->
@@ -204,6 +202,14 @@
 		<navigation-case>
 			<from-outcome>perguntar</from-outcome>
 			<to-view-id>/user/pergunta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/user/*</from-view-id>
+		<navigation-case>
+			<from-outcome>alterarSenha</from-outcome>
+			<to-view-id>/alteracaosenha.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

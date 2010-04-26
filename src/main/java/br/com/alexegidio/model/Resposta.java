@@ -3,14 +3,19 @@ package br.com.alexegidio.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Resposta implements BaseEntity, Serializable {
+@SequenceGenerator(name = "seq_resposta", sequenceName = "seq_resposta", allocationSize = 1)
+public class Resposta implements Serializable {
 
 	/**
 	 * 
@@ -19,14 +24,15 @@ public class Resposta implements BaseEntity, Serializable {
 
 	private Long id;
 
-	private String resposta;
+	private String descricao;
 	private Boolean melhorResposta;
 	private Date dataResposta;
+	private Usuario usuario;
 
 	private Pergunta pergunta;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_resposta")
 	public Long getId() {
 		return id;
 	}
@@ -35,14 +41,16 @@ public class Resposta implements BaseEntity, Serializable {
 		this.id = id;
 	}
 
-	public String getResposta() {
-		return resposta;
+	@Lob
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setResposta(String resposta) {
-		this.resposta = resposta;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
+	@Column(name = "DT_RESP")
 	public Date getDataResposta() {
 		return dataResposta;
 	}
@@ -51,6 +59,7 @@ public class Resposta implements BaseEntity, Serializable {
 		this.dataResposta = dataResposta;
 	}
 
+	@Column(name = "MELHOR_RESP")
 	public Boolean getMelhorResposta() {
 		return melhorResposta;
 	}
@@ -60,12 +69,23 @@ public class Resposta implements BaseEntity, Serializable {
 	}
 
 	@OneToOne
+	@JoinColumn(name = "ID_PERGUNTA")
 	public Pergunta getPergunta() {
 		return pergunta;
 	}
 
 	public void setPergunta(Pergunta pergunta) {
 		this.pergunta = pergunta;
+	}
+
+	@OneToOne
+	@JoinColumn(name = "ID_USUARIO")
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

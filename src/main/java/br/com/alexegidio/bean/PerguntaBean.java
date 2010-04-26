@@ -8,6 +8,7 @@ import br.com.alexegidio.dao.GenericDaoHibernateImpl;
 import br.com.alexegidio.jsf.util.FacesUtil;
 import br.com.alexegidio.model.Pergunta;
 import br.com.alexegidio.model.Tag;
+import br.com.alexegidio.model.Usuario;
 
 public class PerguntaBean implements Serializable {
 
@@ -63,6 +64,9 @@ public class PerguntaBean implements Serializable {
 
 	public void save() {
 		getPergunta().setDataEnvio(Calendar.getInstance().getTime());
+		Usuario usu = (Usuario) FacesUtil.getInstance().getSessionObject(
+				"usuario");
+		getPergunta().setUsuario(usu);
 		try {
 			perguntaDAO.save(getPergunta());
 			listAll();
@@ -102,6 +106,5 @@ public class PerguntaBean implements Serializable {
 	public List<Pergunta> getLastQuestions() {
 		return perguntaDAO.listAll(false, "dataEnvio", 10);
 	}
-
 
 }

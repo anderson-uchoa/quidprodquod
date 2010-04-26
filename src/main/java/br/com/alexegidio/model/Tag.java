@@ -7,9 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Tag implements BaseEntity, Serializable {
+@SequenceGenerator(name = "seq_tag", sequenceName = "seq_tag", allocationSize = 1)
+public class Tag implements Serializable {
 
 	/**
 	 * 
@@ -20,7 +22,7 @@ public class Tag implements BaseEntity, Serializable {
 	private String nome;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_tag")
 	public Long getId() {
 		return id;
 	}

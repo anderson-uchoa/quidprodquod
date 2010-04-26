@@ -33,5 +33,10 @@ public class FacesUtil {
 		fm.setSummary(msg);
 		FacesContext.getCurrentInstance().addMessage(null, fm);
 	}
-	
+
+	public Object getSessionObject(String objectId) {
+		return FacesContext.getCurrentInstance().getExternalContext()
+				.getSessionMap().get(objectId);
+	}
+
 }
