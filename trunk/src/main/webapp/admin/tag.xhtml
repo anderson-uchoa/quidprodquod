@@ -17,7 +17,7 @@
 	</ui:define>
 	<ui:define name="body">
 		<rich:tabPanel switchType="client" id="tabPanel">
-			<rich:tab label="Cadastro" id="tabCadastro">
+			<rich:tab label="Cadastro" id="tabCadastro" rendered="#{authenticatorBean.admin}"> 
 
 				<ui:include src="/META-INF/comps/tagcrud.xhtml" />
 			</rich:tab>

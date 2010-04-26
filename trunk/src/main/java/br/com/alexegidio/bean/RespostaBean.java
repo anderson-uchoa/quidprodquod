@@ -2,6 +2,7 @@ package br.com.alexegidio.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -11,6 +12,7 @@ import br.com.alexegidio.jsf.util.FacesUtil;
 import br.com.alexegidio.model.Pergunta;
 import br.com.alexegidio.model.Resposta;
 import br.com.alexegidio.model.Role;
+import br.com.alexegidio.model.Usuario;
 
 /**
  * 
@@ -132,6 +134,10 @@ public class RespostaBean implements Serializable {
 
 	public void submitAnswer() {
 		resposta.setPergunta(getPergunta());
+		Usuario usuario = (Usuario) FacesUtil.getInstance().getSessionObject(
+				"usuario");
+		resposta.setDataResposta(Calendar.getInstance().getTime());
+		resposta.setUsuario(usuario);
 		pergunta.getRespostas().add(getResposta());
 		save();
 	}

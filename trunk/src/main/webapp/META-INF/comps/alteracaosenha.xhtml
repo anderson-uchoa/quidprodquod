@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+<h:form id="form">
+	<br />
+	<h:messages id="mensagens" globalOnly="true"></h:messages>
+	Login : <h:outputText value="#{authenticatorBean.currentUser.login}" />
+	<br />
+	Digite a senha atual:<h:inputText
+		value="#{usuarioBean.senhaAtual}" required="true"
+		requiredMessage="Campo obrigatório" />
+	<br />
+	*Digite a nova senha:
+		<h:inputSecret id="senha" value="#{usuarioBean.usuario.senha}"
+		required="true" requiredMessage="Campo obrigatório">
+	</h:inputSecret>
+	<rich:message for="senha" />
+	<br />
+	*Confirme a senha:
+		<h:inputSecret id="confirmaSenha"
+		value="#{usuarioBean.senhaConfirmacao}" required="true"
+		requiredMessage="Campo obrigatório">
+		<f:validator validatorId="passwordValidator" />
+		<f:attribute name="senhaId" value="form:senha" />
+	</h:inputSecret>
+	<rich:message for="confirmaSenha" />
+	<a4j:commandButton id="salvar" value="salvar" type="submit"
+		action="#{usuarioBean.alterarSenha}" reRender="form">
+	</a4j:commandButton>
+</h:form>
+</body>
+</html>

@@ -2,15 +2,18 @@ package br.com.alexegidio.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Classificacao implements BaseEntity, Serializable {
+@SequenceGenerator(name = "seq_classific", sequenceName = "seq_classific", allocationSize = 1)
+public class Classificacao implements Serializable {
 
 	/**
 	 * 
@@ -18,13 +21,15 @@ public class Classificacao implements BaseEntity, Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_classific")
 	private Long id;
 
-	@OneToOne
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "ID_USUARIO")
 	private Usuario usario;
 
-	@OneToOne
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "ID_RESP")
 	private Resposta resposta;
 
 	private Integer ponto;

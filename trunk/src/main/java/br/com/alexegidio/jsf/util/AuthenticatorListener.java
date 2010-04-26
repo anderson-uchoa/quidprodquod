@@ -62,7 +62,7 @@ public class AuthenticatorListener implements PhaseListener {
 	}
 
 	public PhaseId getPhaseId() {
-		return PhaseId.RESTORE_VIEW;
+		return PhaseId.ANY_PHASE;
 	}
 
 }

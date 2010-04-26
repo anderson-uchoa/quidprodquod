@@ -23,6 +23,7 @@ public class UsuarioBean implements Serializable {
 	private String idEntity;
 	private String senhaConfirmacao;
 	private Role role;
+	private String senhaAtual;
 
 	private GenericDaoHibernateImpl<Usuario> usuarioDAO;
 	private List<Usuario> list;
@@ -45,6 +46,14 @@ public class UsuarioBean implements Serializable {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public String getSenhaAtual() {
+		return senhaAtual;
+	}
+
+	public void setSenhaAtual(String senhaAtual) {
+		this.senhaAtual = senhaAtual;
 	}
 
 	// ***********fim getters and setters*************\\
@@ -93,6 +102,13 @@ public class UsuarioBean implements Serializable {
 				usuario
 						.setSenha(Criptography
 								.encryptString(usuario.getSenha()));
+				usuario.setRanking(new Integer(0));// todos começam como
+				// rankinng 0
+				usuario.setBloqueado(false);
+				if (usuario.getRole().getNome() == null) {
+					usuario.setRole(new GenericDaoHibernateImpl<Role>(
+							Role.class).load(new Long(2)));
+				}
 				usuarioDAO.save(usuario);
 				listAll();
 				FacesUtil.getInstance().sendMessageInfo(
@@ -140,4 +156,26 @@ public class UsuarioBean implements Serializable {
 		listAll();
 	}
 
+	public void alterarSenha() {
+		if (Criptography.encryptString(senhaAtual).equals(usuario.getSenha())) {
+			save();
+		} else {
+			FacesUtil.getInstance().sendMessageError(
+					"A senha atual não confere.");
+		}
+	}
+
+	public void bloquearUsuario() {
+		Long id = Long.parseLong(idEntity);
+		setUsuario(load(id));
+		getUsuario().setBloqueado(true);
+		listAll();
+	}
+
+	public void desbloquearUsuario() {
+		Long id = Long.parseLong(idEntity);
+		setUsuario(load(id));
+		getUsuario().setBloqueado(false);
+		listAll();
+	}
 }

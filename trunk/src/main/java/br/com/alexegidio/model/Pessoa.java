@@ -3,20 +3,21 @@ package br.com.alexegidio.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class Pessoa implements BaseEntity, Serializable {
+public abstract class Pessoa implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq_usuario")
 	private Long id;
 	private String nome;
 	private String sobreNome;
@@ -31,6 +32,7 @@ public abstract class Pessoa implements BaseEntity, Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "NOME")
 	public String getNome() {
 		return nome;
 	}
@@ -43,10 +45,12 @@ public abstract class Pessoa implements BaseEntity, Serializable {
 		return sobreNome;
 	}
 
+	@Column(name = "SOBRENOME")
 	public void setSobreNome(String sobreNome) {
 		this.sobreNome = sobreNome;
 	}
 
+	@Column(name = "DT_NASC")
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
@@ -55,6 +59,7 @@ public abstract class Pessoa implements BaseEntity, Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
+	@Column(name = "EMAIL")
 	public String getEmail() {
 		return email;
 	}

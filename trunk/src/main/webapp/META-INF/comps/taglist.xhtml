@@ -29,7 +29,7 @@
 					<f:facet name="header">Nome</f:facet>
 					<h:outputText value="#{item.nome}" />
 				</rich:column>
-				<rich:column>
+				<rich:column rendered="#{authenticatorBean.admin}">
 					<f:facet name="header">Alterar</f:facet>
 					<a4j:commandLink id="alterar" value="alterar"
 						action="#{tagBean.prepareUpdate}" reRender="tabPanel">
@@ -38,7 +38,7 @@
 					</a4j:commandLink>
 				</rich:column>
 
-				<rich:column>
+				<rich:column rendered="#{authenticatorBean.admin}">
 					<f:facet name="header">Excluir</f:facet>
 					<a4j:commandLink oncomplete="Richfaces.showModalPanel('modal');"
 						value="Excluir">
