@@ -17,8 +17,8 @@
 		<h:outputText
 			value="#{respostaBean.pergunta.quantidadeRespostas} Resposta(s)" />
 		<rich:dataList id="list" value="#{respostaBean.pergunta.respostas}"
-			var="item" rows="10" type="title">
-			<h:outputText value="#{item.descricao}" escape="false"/>
+			var="item" rows="10" >
+			<h:outputText value="#{item.descricao}" escape="false" class="entry"/>
 			<h:commandLink> aprova </h:commandLink>
 			<h:commandLink> desaprova </h:commandLink>
 		</rich:dataList>

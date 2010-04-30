@@ -16,15 +16,28 @@
 		<br />
 		
 		<rich:dataList id="list" value="#{perguntaBean.lastQuestions}"
-			var="item" rows="10" type="disc">
-			<h:outputText value="#{item.titulo}" />
-			<h:outputText value="#{item.dataEnvio}" />
-			<h:outputText value="-#{item.quantidadeRespostas} Resposta(s)" />
-			<h:commandLink action="#{respostaBean.answer}">
-				Responder
-				<f:setPropertyActionListener value="#{item.id}" 
-					target="#{respostaBean.idEntity}" />
-			</h:commandLink>
+			var="item" rows="10" >
+			
+			<h2><h:outputText value="#{item.titulo}"/></h2>
+			<div class="entry">
+				<p>
+					<h:outputText id="content" value="#{item.descricao}" />
+				</p>
+			</div>
+			<p class="postmetadata">
+				Enviada em<h:outputText value=" #{item.dataEnvio}" /> |
+				<h:commandLink action="#{respostaBean.answer}" value="#{item.quantidadeRespostas} Resposta(s)">
+					<f:setPropertyActionListener value="#{item.id}" 
+						target="#{respostaBean.idEntity}" />
+				</h:commandLink>
+				|<br />
+				<h:commandLink action="#{respostaBean.answer}" value="Responder">
+					<f:setPropertyActionListener value="#{item.id}" 
+						target="#{respostaBean.idEntity}" />
+				</h:commandLink>
+			</p>
+			
+			
 		</rich:dataList>
 	</a4j:form>
 	</body>
