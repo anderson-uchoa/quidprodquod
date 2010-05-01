@@ -14,3 +14,17 @@ Create a database and edit the *hibernate.cfg.xml* setting this properties with 
 * _"hibernate.connection.password"_ <br/>
 * _"hibernate.connection.url"_ <br/>
 * _"hibernate.connection.username"_ <br/>
+
+==Scripts SQL==
+
+Table Usuario
+<pre>
+insert into usuario (id, login, senha, id_role) values (1, 'admin', '21232f297a57a5a743894a0e4a801fc3',1);
+</pre>
+
+Table Role
+<pre>
+INSERT INTO role (id, admin, nome) VALUES (1, true, 'ADMIN');
+INSERT INTO role (id, admin, nome) VALUES (2, false, 'USER');
+INSERT INTO role (id, admin, nome) VALUES (3, true, 'MODERADOR');
+</pre>
