@@ -26,6 +26,7 @@ public class UsuarioBean implements Serializable {
 	private String senhaConfirmacao;
 	private Role role;
 	private String senhaAtual;
+	private List<Usuario> usuarios;
 
 	private GenericDaoHibernateImpl<Usuario> usuarioDAO;
 	private List<Usuario> list;
@@ -48,6 +49,14 @@ public class UsuarioBean implements Serializable {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	public String getSenhaAtual() {
@@ -192,5 +201,11 @@ public class UsuarioBean implements Serializable {
 		setUsuario(load(id));
 		getUsuario().setBloqueado(false);
 		listAll();
+	}
+
+	public String listRanking() {
+		String hql = "from Usuario u order by u.ranking desc";
+		usuarios = usuarioDAO.findByHQL(hql);
+		return "listRanking";
 	}
 }

@@ -47,6 +47,9 @@ public class Usuario extends Pessoa {
 
 	@Transient
 	public Integer getRanking() {
+		if (ranking == null) {
+			return 0;
+		}
 		return ranking;
 	}
 

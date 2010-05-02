@@ -136,9 +136,19 @@ public class RespostaBean implements Serializable {
 		resposta.setPergunta(getPergunta());
 		Usuario usuario = (Usuario) FacesUtil.getInstance().getSessionObject(
 				"usuario");
+		Integer rank = usuario.getRanking() + 5;
+		saveRanking(rank);
+
 		resposta.setDataResposta(Calendar.getInstance().getTime());
 		resposta.setUsuario(usuario);
 		pergunta.getRespostas().add(getResposta());
 		save();
+	}
+
+	private void saveRanking(Integer ranking) {
+		Usuario usuario = (Usuario) FacesUtil.getInstance().getSessionObject(
+				"usuario");
+		usuario.setRanking(ranking);
+		new GenericDaoHibernateImpl<Usuario>(Usuario.class).save(usuario);
 	}
 }

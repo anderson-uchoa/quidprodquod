@@ -180,7 +180,7 @@ public class PerguntaBean implements Serializable {
 	public String search() {
 
 		String hql = "from Pergunta p where p.titulo like '%" + getParameters()
-				+ "' or p.descricao like '%" + getParameters() + "'";
+				+ "%' or p.descricao like '%" + getParameters() + "%'";
 
 		searchResults = perguntaDAO.findByHQL(hql);
 
