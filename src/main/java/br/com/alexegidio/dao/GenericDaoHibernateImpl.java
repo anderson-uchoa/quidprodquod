@@ -70,9 +70,9 @@ public class GenericDaoHibernateImpl<T> implements GenericDao<T>, Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
-	public T findByCriteria(Class<T> clazz, Example exampleObject) {
+	public T findByCriteria(Example exampleObject) {
 
-		Criteria criteria = getSession().createCriteria(clazz);
+		Criteria criteria = getSession().createCriteria(getDomainClass());
 		criteria.add(exampleObject);
 		return (T) criteria.uniqueResult();
 	}
