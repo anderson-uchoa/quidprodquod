@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.criterion.Example;
+
 import br.com.alexegidio.dao.GenericDaoHibernateImpl;
 import br.com.alexegidio.jsf.util.Criptography;
 import br.com.alexegidio.jsf.util.FacesUtil;
@@ -97,27 +99,40 @@ public class UsuarioBean implements Serializable {
 	public void save() {
 
 		usuario.setRole(getRole());
+		Usuario usuarioExample = new Usuario();
+		usuarioExample.setLogin(getUsuario().getLogin());
+
 		if (usuario.getSenha().equals(senhaConfirmacao)) {
-			try {
-				usuario
-						.setSenha(Criptography
-								.encryptString(usuario.getSenha()));
-				usuario.setRanking(new Integer(0));// todos começam como
-				// rankinng 0
-				usuario.setBloqueado(false);
-				if (usuario.getRole().getNome() == null) {
-					usuario.setRole(new GenericDaoHibernateImpl<Role>(
-							Role.class).load(new Long(2)));
+
+			Example userExample = Example.create(usuarioExample);
+			userExample.excludeZeroes();
+
+			if (usuarioDAO.findByCriteria(Usuario.class, userExample) == null) {
+				try {
+					usuario.setSenha(Criptography.encryptString(usuario
+							.getSenha()));
+					usuario.setRanking(new Integer(0));// todos começam como
+					// rankinng 0
+					usuario.setBloqueado(false);
+					if (usuario.getRole().getNome() == null) {
+						usuario.setRole(new GenericDaoHibernateImpl<Role>(
+								Role.class).load(new Long(2)));
+					}
+					usuarioDAO.save(usuario);
+					listAll();
+					FacesUtil.getInstance().sendMessageInfo(
+							"Registro incluído com sucesso.");
+					usuario = new Usuario();
+				} catch (Exception e) {
+					e.printStackTrace();
+					FacesUtil.getInstance().sendMessageError(
+							"Erro ao incluir o registro." + e);
 				}
-				usuarioDAO.save(usuario);
-				listAll();
-				FacesUtil.getInstance().sendMessageInfo(
-						"Registro incluído com sucesso.");
-				usuario = new Usuario();
-			} catch (Exception e) {
-				e.printStackTrace();
+
+			} else {
 				FacesUtil.getInstance().sendMessageError(
-						"Erro ao incluir o registro." + e);
+						"Já existe um usuário com este login."
+								+ " Por favor tente outro");
 			}
 
 		} else {
@@ -131,7 +146,7 @@ public class UsuarioBean implements Serializable {
 	}
 
 	public void listAll() {
-		list = usuarioDAO.listAll(Usuario.class);
+		list = usuarioDAO.listAll();
 	}
 
 	public String getIdEntity() {

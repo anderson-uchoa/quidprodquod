@@ -8,7 +8,7 @@ public interface GenericDao<T> {
 
 	T load(Long id);
 
-	List<T> listAll(Class<?> clazz);
+	List<T> listAll();
 
 	void update(T transientObject);
 

@@ -78,7 +78,7 @@ public class RoleBean implements Serializable {
 	}
 
 	public void listAll() {
-		list = roleDAO.listAll(Role.class);
+		list = roleDAO.listAll();
 
 	}
 
@@ -97,7 +97,7 @@ public class RoleBean implements Serializable {
 	public List<SelectItem> getRoleSelect() {
 		List<SelectItem> list = new ArrayList<SelectItem>();
 		GenericDaoHibernateImpl<Role> roleDao = new GenericDaoHibernateImpl<Role>(Role.class);
-		List<Role> roles = roleDao.listAll(Role.class);
+		List<Role> roles = roleDao.listAll();
 		for (Role r : roles) {
 			list.add(new SelectItem(r, r.toString()));
 		}

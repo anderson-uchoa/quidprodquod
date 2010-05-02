@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Order;
@@ -77,22 +78,31 @@ public class GenericDaoHibernateImpl<T> implements GenericDao<T>, Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<T> listAll(Class clazz) {
+	public List<T> listAll() {
 		Criteria criteria = getSession().createCriteria(getDomainClass());
 		return criteria.list();
 
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	public List<T> findByHQL(String hql) {
+		Query q = getSession().createQuery(hql);
+		return q.list();
+	}
+
 	/**
 	 * 
-	 * @param asc ordenar ascendente ou descendente
-	 * @param order propriedade de ordenacao
-	 * @param limit o numero maximo de resultados
+	 * @param asc
+	 *            ordenar ascendente ou descendente
+	 * @param order
+	 *            propriedade de ordenacao
+	 * @param limit
+	 *            o numero maximo de resultados
 	 * @return uma List de domainClass
 	 */
 	@SuppressWarnings("unchecked")
 	public List<T> listAll(boolean asc, String order, int limit) {
-		
+
 		Criteria criteria = getSession().createCriteria(getDomainClass());
 		if (asc) {
 			criteria.addOrder(Order.asc(order));

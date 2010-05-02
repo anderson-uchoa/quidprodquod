@@ -59,7 +59,7 @@
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 
-	<!-- TODO verificar necessidadae -->
+	<!-- TODO verificar necessidade -->
 	<managed-bean>
 		<managed-bean-name>respostaBean</managed-bean-name>
 		<managed-bean-class>
@@ -75,16 +75,6 @@
 		</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
-
-	<!-- navigation rules for helloWorld.jsp -->
-	<navigation-rule>
-		<from-view-id>/helloWorld.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>success</from-outcome>
-			<to-view-id>/page2.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
 
 	<!-- navigation rules for login -->
 	<navigation-rule>
@@ -157,6 +147,15 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>perguntas</from-outcome>
+			<to-view-id>/perguntas.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 
 	<!-- Regras de navegacao menuadmin -->
 	<navigation-rule>
@@ -194,6 +193,16 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/admin/*</from-view-id>
+		<navigation-case>
+			<from-outcome>home</from-outcome>
+			<to-view-id>/admin/adminpage.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
 	<!-- Fim regras navegacao menuadmin  -->
 
 	<!-- Navigation Rules menu_user -->
