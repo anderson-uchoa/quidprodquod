@@ -194,9 +194,10 @@ public class PerguntaBean implements Serializable {
 		}
 	}
 
-	public void unAnswered() {
-		String hql = "from Pergunta p join p.respostas r on (p.id <> r.pergunta.id)";
-		searchResults = perguntaDAO.findByHQL(hql);	
+	public String unAnswered() {
+		String sql = "from Pergunta p where size(p.respostas) = 0";
+		searchResults = perguntaDAO.findByHQL(sql);
+		return "semResposta";
 	}
 
 }

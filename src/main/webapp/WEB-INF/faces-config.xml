@@ -130,6 +130,14 @@
 			<to-view-id>/searchnotfound.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>semResposta</from-outcome>
+			<to-view-id>/searchfound.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 	<!-- end navigation rules for perguntaBean -->
 
