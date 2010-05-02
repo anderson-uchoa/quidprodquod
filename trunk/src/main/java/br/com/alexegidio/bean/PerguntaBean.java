@@ -1,6 +1,7 @@
 package br.com.alexegidio.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -22,6 +23,8 @@ public class PerguntaBean implements Serializable {
 	private List<Pergunta> list;
 	private String idPerguntaSelecionada;
 	private String idEntity;
+	private String parameters;
+	private List<Pergunta> searchResults;
 
 	public PerguntaBean() {
 		super();
@@ -59,6 +62,25 @@ public class PerguntaBean implements Serializable {
 
 	public void setIdPerguntaSelecionada(String idPerguntaSelecionada) {
 		this.idPerguntaSelecionada = idPerguntaSelecionada;
+	}
+
+	public String getParameters() {
+		return parameters;
+	}
+
+	public void setParameters(String parameters) {
+		this.parameters = parameters;
+	}
+
+	public List<Pergunta> getSearchResults() {
+		if (searchResults == null) {
+			searchResults = new ArrayList<Pergunta>();
+		}
+		return searchResults;
+	}
+
+	public void setSearchResults(List<Pergunta> searchResults) {
+		this.searchResults = searchResults;
 	}
 
 	public String getIdEntity() {
@@ -107,11 +129,16 @@ public class PerguntaBean implements Serializable {
 			FacesUtil.getInstance().sendMessageError("Informe uma Tag");
 
 		} else {
-			if (pergunta.getTags().size() >= 3) {
+			if (getPergunta().getTags().contains(tag)) {
 				FacesUtil.getInstance().sendMessageError(
-						"Você pode adicionar somente 3 tags");
+						"A Tag " + tag.getNome() + " já foi adicionada.");
 			} else {
-				pergunta.getTags().add(tag);
+				if (pergunta.getTags().size() >= 3) {
+					FacesUtil.getInstance().sendMessageError(
+							"Você pode adicionar somente 3 tags");
+				} else {
+					pergunta.getTags().add(tag);
+				}
 			}
 		}
 
@@ -148,7 +175,28 @@ public class PerguntaBean implements Serializable {
 			FacesUtil.getInstance().sendMessageError(
 					"Erro ao executar a operação: " + e);
 		}
+	}
 
+	public String search() {
+
+		String hql = "from Pergunta p where p.titulo like '%" + getParameters()
+				+ "' or p.descricao like '%" + getParameters() + "'";
+
+		searchResults = perguntaDAO.findByHQL(hql);
+
+		if (searchResults.size() > 0) {
+			setParameters("");
+			return "found";
+
+		} else {
+			return "notFound";
+
+		}
+	}
+
+	public void unAnswered() {
+		String hql = "from Pergunta p join p.respostas r on (p.id <> r.pergunta.id)";
+		searchResults = perguntaDAO.findByHQL(hql);	
 	}
 
 }

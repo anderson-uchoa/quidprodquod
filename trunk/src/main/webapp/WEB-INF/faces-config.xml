@@ -75,7 +75,7 @@
 		</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
-
+	
 	<!-- navigation rules for login -->
 	<navigation-rule>
 		<from-view-id>/login.xhtml</from-view-id>
@@ -117,6 +117,19 @@
 			<to-view-id>/user/resposta.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<!-- navigation rules for searchBean -->
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>found</from-outcome>
+			<to-view-id>/searchfound.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>notFound</from-outcome>
+			<to-view-id>/searchnotfound.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 	<!-- end navigation rules for perguntaBean -->
 
@@ -147,7 +160,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>/*</from-view-id>
 		<navigation-case>
@@ -193,7 +206,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>/admin/*</from-view-id>
 		<navigation-case>
@@ -202,12 +215,12 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<!-- Fim regras navegacao menuadmin  -->
 
 	<!-- Navigation Rules menu_user -->
 	<navigation-rule>
-		<from-view-id>/user/*</from-view-id>
+		<from-view-id>/*</from-view-id>
 		<navigation-case>
 			<from-outcome>perguntar</from-outcome>
 			<to-view-id>/user/pergunta.xhtml</to-view-id>

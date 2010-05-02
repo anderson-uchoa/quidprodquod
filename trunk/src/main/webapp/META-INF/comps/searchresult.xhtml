@@ -14,7 +14,7 @@
 <a4j:form>
 	<a4j:keepAlive beanName="perguntaBean"></a4j:keepAlive>
 	<h:messages id="mensagens" globalOnly="true"></h:messages>
-	<a4j:repeat id="perguntaList" value="#{perguntaBean.allQuestions}"
+	<a4j:repeat id="perguntaList" value="#{perguntaBean.searchResults}"
 		var="item">
 		<li>
 		<h2><h:outputText value="#{item.titulo}" /></h2>

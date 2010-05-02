@@ -1,17 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
 </head>
 <body>
-<ui:composition template="../template.xhtml">
-	<ui:define name="customMenu">
-		<ui:include src="/META-INF/comps/menu_user.xhtml"/>
+<ui:composition template="template.xhtml">
+	<ui:define name="navigation">
+		Home
 	</ui:define>
 	<ui:define name="body">
-		<ui:include src="/META-INF/comps/ultimasperguntas.xhtml" />
+		<div id="post">
+			<ui:include src="/META-INF/comps/searchresult.xhtml" />
+		</div>
 	</ui:define>
 </ui:composition>
 </body>

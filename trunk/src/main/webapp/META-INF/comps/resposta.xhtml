@@ -14,8 +14,9 @@
 		<a4j:keepAlive beanName="respostaBean"></a4j:keepAlive>
 		<h2><h:outputText id="lbPergunta" value="#{respostaBean.pergunta.titulo}" /></h2>
 		<br />
-		<h:outputText
+		<h4><h:outputText
 			value="#{respostaBean.pergunta.quantidadeRespostas} Resposta(s)" />
+		</h4>
 		<hr/>
 		<a4j:repeat id="list" value="#{respostaBean.pergunta.respostas}"
 			var="item">
