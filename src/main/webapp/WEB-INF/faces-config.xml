@@ -75,7 +75,7 @@
 		</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
-	
+
 	<!-- navigation rules for login -->
 	<navigation-rule>
 		<from-view-id>/login.xhtml</from-view-id>
@@ -117,7 +117,7 @@
 			<to-view-id>/user/resposta.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<!-- navigation rules for searchBean -->
 	<navigation-rule>
 		<from-view-id>/*</from-view-id>
@@ -130,7 +130,7 @@
 			<to-view-id>/searchnotfound.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>/*</from-view-id>
 		<navigation-case>
@@ -140,6 +140,16 @@
 	</navigation-rule>
 
 	<!-- end navigation rules for perguntaBean -->
+
+	<!-- navigation rules for perguntaBean -->
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>listRanking</from-outcome>
+			<to-view-id>/ranking.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- end navigation rules for usuarioBean -->
 
 	<!-- Navigation Rules for menu geral -->
 	<navigation-rule>

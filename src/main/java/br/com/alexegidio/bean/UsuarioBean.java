@@ -204,7 +204,8 @@ public class UsuarioBean implements Serializable {
 	}
 
 	public String listRanking() {
-		String hql = "from Usuario u order by u.ranking desc";
+		String hql = "from Usuario u where u.login <> 'admin' and u.ranking <> 0"
+				+ "order by u.ranking desc";
 		usuarios = usuarioDAO.findByHQL(hql);
 		return "listRanking";
 	}
