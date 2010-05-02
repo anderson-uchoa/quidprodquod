@@ -10,22 +10,24 @@
 	<ul>
 		<h:form>
 			<li><h:commandLink action="home">Home</h:commandLink></li>
-			
+
 			<li><h:commandLink action="login"
 				rendered="#{!authenticatorBean.logado}">Login</h:commandLink></li>
-				
+
 			<li><h:commandLink action="#{authenticatorBean.logout}"
 				rendered="#{authenticatorBean.logado}">Sair</h:commandLink></li>
-				
+
 			<li><h:commandLink action="tag"
 				rendered="#{authenticatorBean.admin}">Tags</h:commandLink></li>
-				
-			<li><h:commandLink action="perguntas" value="Perguntas" 
-				rendered="#{authenticatorBean.admin}"></h:commandLink></li>
-					
-			<li><h:commandLink action="semResposta" value="Sem resposta"/></li>
-			
+
+			<li><h:commandLink action="perguntas" value="Perguntas"
+				rendered="#{authenticatorBean.logado}"></h:commandLink></li>
+
+			<li><h:commandLink action="#{perguntaBean.unAnswered}" value="Sem resposta" /></li>
+
 			<li><a href="#">Ranking</a></li>
+
+			<li><h:commandLink action="perguntar" value="Enviar pergunta" /></li>
 		</h:form>
 	</ul>
 	</body>

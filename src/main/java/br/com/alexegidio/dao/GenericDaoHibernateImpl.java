@@ -90,6 +90,12 @@ public class GenericDaoHibernateImpl<T> implements GenericDao<T>, Serializable {
 		return q.list();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<T> findBySQL(String sql) {
+		Query q = getSession().createSQLQuery(sql);
+		return q.list();
+	}
+
 	/**
 	 * 
 	 * @param asc
