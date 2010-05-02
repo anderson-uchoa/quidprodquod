@@ -116,12 +116,12 @@ public class UsuarioBean implements Serializable {
 			Example userExample = Example.create(usuarioExample);
 			userExample.excludeZeroes();
 
-			if (usuarioDAO.findByCriteria(Usuario.class, userExample) == null) {
+			if (usuarioDAO.findByCriteria(userExample) == null) {
 				try {
 					usuario.setSenha(Criptography.encryptString(usuario
 							.getSenha()));
 					usuario.setRanking(new Integer(0));// todos começam como
-					// rankinng 0
+					// ranking 0
 					usuario.setBloqueado(false);
 					if (usuario.getRole().getNome() == null) {
 						usuario.setRole(new GenericDaoHibernateImpl<Role>(

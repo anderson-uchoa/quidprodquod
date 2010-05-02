@@ -55,8 +55,9 @@ public class AuthenticatorBean implements Serializable {
 	}
 
 	public boolean isAdmin() {
-		if (logado && (usuario.getRole().getNome() != null
-				&& usuario.getRole().getNome().equals("ADMIN"))) {
+		if (logado
+				&& (usuario.getRole().getNome() != null && usuario.getRole()
+						.getNome().equals("ADMIN"))) {
 			admin = true;
 		}
 		return admin;
@@ -68,7 +69,7 @@ public class AuthenticatorBean implements Serializable {
 		userExample.excludeZeroes();
 		usuario.setSenha(Criptography.encryptString(usuario.getSenha()));
 
-		usuario = userDao.findByCriteria(Usuario.class, userExample);
+		usuario = userDao.findByCriteria(userExample);
 		String retorno = "fail";
 		if (usuario == null) {
 			FacesUtil.getInstance().sendMessageError(
@@ -77,8 +78,10 @@ public class AuthenticatorBean implements Serializable {
 
 		} else {
 			if (usuario.getBloqueado() == true) {
-				FacesUtil.getInstance().sendMessageError(
-				"Esta conta foi bloqueada contate o Administrador do sistema");
+				FacesUtil
+						.getInstance()
+						.sendMessageError(
+								"Esta conta foi bloqueada contate o Administrador do sistema");
 			} else {
 				FacesContext.getCurrentInstance().getExternalContext()
 						.getSessionMap().put("usuario", usuario);
@@ -98,7 +101,8 @@ public class AuthenticatorBean implements Serializable {
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.remove("usuario");
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.clear();
 		logado = false;
 		return "logout";
 	}

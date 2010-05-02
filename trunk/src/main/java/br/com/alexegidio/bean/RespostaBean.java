@@ -7,8 +7,11 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import org.hibernate.criterion.Example;
+
 import br.com.alexegidio.dao.GenericDaoHibernateImpl;
 import br.com.alexegidio.jsf.util.FacesUtil;
+import br.com.alexegidio.model.Classificacao;
 import br.com.alexegidio.model.Pergunta;
 import br.com.alexegidio.model.Resposta;
 import br.com.alexegidio.model.Role;
@@ -32,10 +35,13 @@ public class RespostaBean implements Serializable {
 	private final GenericDaoHibernateImpl<Pergunta> perguntaDAO;
 	private List<Pergunta> list;
 	private Resposta resposta;
+	private final GenericDaoHibernateImpl<Classificacao> classificacaoDAO;
 
 	public RespostaBean() {
 		super();
 		perguntaDAO = new GenericDaoHibernateImpl<Pergunta>(Pergunta.class);
+		classificacaoDAO = new GenericDaoHibernateImpl<Classificacao>(
+				Classificacao.class);
 	}
 
 	public Pergunta getPergunta() {
@@ -150,5 +156,70 @@ public class RespostaBean implements Serializable {
 				"usuario");
 		usuario.setRanking(ranking);
 		new GenericDaoHibernateImpl<Usuario>(Usuario.class).save(usuario);
+	}
+
+	public void saveClassificacao(Classificacao classif) {
+		new GenericDaoHibernateImpl<Classificacao>(Classificacao.class)
+				.save(classif);
+
+	}
+
+	public void aprovarResposta() {
+		Usuario usuario = (Usuario) FacesUtil.getInstance().getSessionObject(
+				"usuario");
+
+		Classificacao clas = new Classificacao();
+
+		clas.setUsario(usuario);
+		clas.setResposta(getResposta());
+		clas.setPonto(new Integer(1));
+
+		try {
+			Classificacao c = new Classificacao();
+			c.setResposta(getResposta());
+			c.setUsario(usuario);
+
+			Example clasExample = Example.create(c);
+			if (classificacaoDAO.findByCriteria(clasExample) == null) {
+				saveClassificacao(clas);
+				FacesUtil.getInstance().sendMessageInfo(
+						"Resposta classificada.");
+
+			} else {
+				FacesUtil.getInstance().sendMessageInfo(
+						"Esta reposta já foi classificada por este usuário.");
+			}
+		} catch (Exception e) {
+			FacesUtil.getInstance().sendMessageError(
+					"Erro ao incluir o registro." + e);
+		}
+	}
+	
+	public void desaprovarResposta() {
+		
+		Usuario usuario = (Usuario) FacesUtil.getInstance().getSessionObject(
+				"usuario");
+
+		try {
+			Classificacao c = new Classificacao();
+			c.setResposta(getResposta());
+			c.setUsario(usuario);
+
+			Example clasExample = Example.create(c);
+			Classificacao classificacao = classificacaoDAO.findByCriteria(clasExample);
+			
+			if (classificacao != null) {
+				classificacaoDAO.delete(classificacao);
+				FacesUtil.getInstance().sendMessageInfo(
+						"Resposta desaprovada.");
+
+			} else {
+				FacesUtil.getInstance().sendMessageInfo(
+						"Esta reposta ainda não foi classificada por este usuário.");
+			}
+		} catch (Exception e) {
+			FacesUtil.getInstance().sendMessageError(
+					"Erro ao incluir o registro." + e);
+		}
 	}
 }

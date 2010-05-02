@@ -12,6 +12,7 @@
 	<body>
 	<a4j:form id="formAnswer">
 		<a4j:keepAlive beanName="respostaBean"></a4j:keepAlive>
+		<h:messages id="mensagens" globalOnly="true"></h:messages>
 		<h2><h:outputText id="lbPergunta" value="#{respostaBean.pergunta.titulo}" /></h2>
 		<br />
 		<h4><h:outputText
@@ -27,8 +28,8 @@
 			</li>
 			<li>
 				<p class="postmetadata">
-					<h:commandLink> aprova </h:commandLink>
-					<h:commandLink> desaprova </h:commandLink>
+					<a4j:commandLink value="aprova" action="#{respostaBean.aprovarResposta}" reRender="formAnswer"/>
+					| <a4j:commandLink value="desaprova" action="#{respostaBean.desaprovarResposta}" reRender="formAnswer"/>
 				</p>
 			</li>
 		</a4j:repeat>
@@ -40,7 +41,7 @@
 
 		<br />
 		<a4j:commandButton action="#{respostaBean.submitAnswer}"
-			reRender="formAnswer" value="Salvar" />
+			reRender="list" value="Salvar" />
 	</a4j:form>
 	</body>
 </ui:composition>
