@@ -24,7 +24,7 @@ public class SuportBean {
 	public List<SelectItem> getTagSelect() {
 		List<SelectItem> list = new ArrayList<SelectItem>();
 		List<Tag> tags = new GenericDaoHibernateImpl(Tag.class)
-				.listAll(Tag.class);
+				.listAll();
 		for (Tag t : tags) {
 			list.add(new SelectItem(t, t.toString()));
 		}
@@ -35,7 +35,7 @@ public class SuportBean {
 	public List<SelectItem> getRoleSelect() {
 		List<SelectItem> list = new ArrayList<SelectItem>();
 		List<Role> roles = new GenericDaoHibernateImpl(Role.class)
-				.listAll(Role.class);
+				.listAll();
 		for (Role r : roles) {
 			list.add(new SelectItem(r, r.toString()));
 		}

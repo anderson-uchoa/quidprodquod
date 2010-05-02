@@ -55,8 +55,8 @@ public class AuthenticatorBean implements Serializable {
 	}
 
 	public boolean isAdmin() {
-		if (usuario.getRole().getNome() != null
-				&& usuario.getRole().getNome().equals("ADMIN")) {
+		if (logado && (usuario.getRole().getNome() != null
+				&& usuario.getRole().getNome().equals("ADMIN"))) {
 			admin = true;
 		}
 		return admin;
@@ -98,6 +98,7 @@ public class AuthenticatorBean implements Serializable {
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.remove("usuario");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
 		logado = false;
 		return "logout";
 	}

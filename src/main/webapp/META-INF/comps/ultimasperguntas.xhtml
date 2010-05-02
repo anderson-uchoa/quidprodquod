@@ -15,15 +15,18 @@
 		Últimas 10 perguntas:
 		<br />
 		
-		<rich:dataList id="list" value="#{perguntaBean.lastQuestions}"
+		<a4j:repeat id="list" value="#{perguntaBean.lastQuestions}"
 			var="item" rows="10" >
 			
-			<h2><h:outputText value="#{item.titulo}"/></h2>
-			<div class="entry">
-				<p>
-					<h:outputText id="content" value="#{item.descricao}" />
-				</p>
-			</div>
+			<li><h2><h:outputText value="#{item.titulo}"/></h2></li>
+			<li>
+				<div class="entry">
+					<p>
+						<h:outputText id="content" value="#{item.descricao}" />
+					</p>
+				</div>
+			</li>
+			<li>
 			<p class="postmetadata">
 				Enviada em<h:outputText value=" #{item.dataEnvio}" /> |
 				<h:commandLink action="#{respostaBean.answer}" value="#{item.quantidadeRespostas} Resposta(s)">
@@ -36,9 +39,9 @@
 						target="#{respostaBean.idEntity}" />
 				</h:commandLink>
 			</p>
+			</li>
 			
-			
-		</rich:dataList>
+		</a4j:repeat>
 	</a4j:form>
 	</body>
 </ui:composition>

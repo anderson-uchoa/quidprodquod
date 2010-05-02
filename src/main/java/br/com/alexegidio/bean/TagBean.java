@@ -71,7 +71,7 @@ public class TagBean implements Serializable {
 	}
 
 	public void listAll() {
-		list = tagDAO.listAll(Tag.class);
+		list = tagDAO.listAll();
 
 	}
 

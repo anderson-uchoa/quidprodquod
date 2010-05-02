@@ -12,16 +12,25 @@
 	<body>
 	<a4j:form id="formAnswer">
 		<a4j:keepAlive beanName="respostaBean"></a4j:keepAlive>
-		<h:outputText id="lbPergunta" value="#{respostaBean.pergunta.titulo}" />
+		<h2><h:outputText id="lbPergunta" value="#{respostaBean.pergunta.titulo}" /></h2>
 		<br />
 		<h:outputText
 			value="#{respostaBean.pergunta.quantidadeRespostas} Resposta(s)" />
-		<rich:dataList id="list" value="#{respostaBean.pergunta.respostas}"
-			var="item" rows="10" >
-			<h:outputText value="#{item.descricao}" escape="false" class="entry"/>
-			<h:commandLink> aprova </h:commandLink>
-			<h:commandLink> desaprova </h:commandLink>
-		</rich:dataList>
+		<hr/>
+		<a4j:repeat id="list" value="#{respostaBean.pergunta.respostas}"
+			var="item">
+			<li>
+				<p>
+					<h:outputText value="#{item.descricao}" escape="false" class="entry"/>
+				</p>
+			</li>
+			<li>
+				<p class="postmetadata">
+					<h:commandLink> aprova </h:commandLink>
+					<h:commandLink> desaprova </h:commandLink>
+				</p>
+			</li>
+		</a4j:repeat>
 		<br />
 			Responder
 			<br />

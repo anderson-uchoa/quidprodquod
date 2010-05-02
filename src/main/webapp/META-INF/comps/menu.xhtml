@@ -20,7 +20,11 @@
 			<li><h:commandLink action="tag"
 				rendered="#{authenticatorBean.admin}">Tags</h:commandLink></li>
 				
-			<li><a href="#">Sem resposta</a></li>
+			<li><h:commandLink action="perguntas" value="Perguntas" 
+				rendered="#{authenticatorBean.admin}"></h:commandLink></li>
+					
+			<li><h:commandLink action="semResposta" value="Sem resposta"/></li>
+			
 			<li><a href="#">Ranking</a></li>
 		</h:form>
 	</ul>

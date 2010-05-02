@@ -21,6 +21,7 @@ public class PerguntaBean implements Serializable {
 	private Tag tag;
 	private List<Pergunta> list;
 	private String idPerguntaSelecionada;
+	private String idEntity;
 
 	public PerguntaBean() {
 		super();
@@ -60,18 +61,31 @@ public class PerguntaBean implements Serializable {
 		this.idPerguntaSelecionada = idPerguntaSelecionada;
 	}
 
+	public String getIdEntity() {
+		return idEntity;
+	}
+
+	public void setIdEntity(String idEntity) {
+		this.idEntity = idEntity;
+	}
+
 	// Fim getter and setters
+
+	public Pergunta load(Long id) {
+		return perguntaDAO.load(id);
+	}
 
 	public void save() {
 		getPergunta().setDataEnvio(Calendar.getInstance().getTime());
 		Usuario usu = (Usuario) FacesUtil.getInstance().getSessionObject(
 				"usuario");
 		getPergunta().setUsuario(usu);
+		getPergunta().setBloqueada(false);
 		try {
 			perguntaDAO.save(getPergunta());
 			listAll();
 			FacesUtil.getInstance().sendMessageInfo(
-					"Registro incluído com sucesso.");
+					"Registro salvo com sucesso.");
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesUtil.getInstance().sendMessageError(
@@ -85,7 +99,7 @@ public class PerguntaBean implements Serializable {
 	}
 
 	public void listAll() {
-		list = perguntaDAO.listAll(Pergunta.class);
+		list = perguntaDAO.listAll();
 	}
 
 	public void addTag() {
@@ -104,7 +118,37 @@ public class PerguntaBean implements Serializable {
 	}
 
 	public List<Pergunta> getLastQuestions() {
-		return perguntaDAO.listAll(false, "dataEnvio", 10);
+		String hql = "from Pergunta p where p.bloqueada = "
+				+ "false order by p.dataEnvio desc";
+		return perguntaDAO.findByHQL(hql);
+	}
+
+	public List<Pergunta> getAllQuestions() {
+		return perguntaDAO.listAll();
+	}
+
+	/**
+	 * prepara o form para atualizacao
+	 */
+	public void blockQuestion() {
+		Long id = Long.parseLong(idEntity);
+		setPergunta(load(id));
+		if (getPergunta().getBloqueada()) {
+			FacesUtil.getInstance().sendMessageError(
+					"Esta pergunta já foi bloqueada");
+
+		} else {
+			getPergunta().setBloqueada(true);
+		}
+		try {
+			perguntaDAO.save(getPergunta());
+			FacesUtil.getInstance().sendMessageInfo("Pergunta bloqueada");
+		} catch (Exception e) {
+			e.printStackTrace();
+			FacesUtil.getInstance().sendMessageError(
+					"Erro ao executar a operação: " + e);
+		}
+
 	}
 
 }

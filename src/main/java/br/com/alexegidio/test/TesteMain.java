@@ -1,7 +1,6 @@
 package br.com.alexegidio.test;
 
-import br.com.alexegidio.dao.GenericDaoHibernateImpl;
-import br.com.alexegidio.model.Usuario;
+import br.com.alexegidio.jsf.util.Criptography;
 
 public class TesteMain {
 
@@ -10,10 +9,7 @@ public class TesteMain {
 	 */
 	public static void main(String[] args) {
 
-		GenericDaoHibernateImpl<Usuario> usuDao = new GenericDaoHibernateImpl<Usuario>(
-				Usuario.class);
-
-		System.out.println(usuDao.getDomainClass());
+		System.out.println(Criptography.encryptString("admin"));
 	}
 
 }
