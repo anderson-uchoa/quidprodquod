@@ -2,7 +2,6 @@ package br.com.alexegidio.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,11 +23,11 @@ public class Classificacao implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_classific")
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO")
 	private Usuario usario;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "ID_RESP")
 	private Resposta resposta;
 

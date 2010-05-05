@@ -36,12 +36,14 @@ public class RespostaBean implements Serializable {
 	private List<Pergunta> list;
 	private Resposta resposta;
 	private final GenericDaoHibernateImpl<Classificacao> classificacaoDAO;
+	private final GenericDaoHibernateImpl<Resposta> respostaDAO;
 
 	public RespostaBean() {
 		super();
 		perguntaDAO = new GenericDaoHibernateImpl<Pergunta>(Pergunta.class);
 		classificacaoDAO = new GenericDaoHibernateImpl<Classificacao>(
 				Classificacao.class);
+		respostaDAO = new GenericDaoHibernateImpl<Resposta>(Resposta.class);
 	}
 
 	public Pergunta getPergunta() {
@@ -171,15 +173,16 @@ public class RespostaBean implements Serializable {
 		Classificacao clas = new Classificacao();
 
 		clas.setUsario(usuario);
-		clas.setResposta(getResposta());
+		Resposta r = respostaDAO.load(new Long(idEntity));
+		clas.setResposta(r);
 		clas.setPonto(new Integer(1));
 
-		try {
-			Classificacao c = new Classificacao();
-			c.setResposta(getResposta());
-			c.setUsario(usuario);
+		Classificacao c = new Classificacao();
+		c.setResposta(r);
+		c.setUsario(usuario);
 
-			Example clasExample = Example.create(c);
+		Example clasExample = Example.create(c);
+		try {
 			if (classificacaoDAO.findByCriteria(clasExample) == null) {
 				saveClassificacao(clas);
 				FacesUtil.getInstance().sendMessageInfo(
