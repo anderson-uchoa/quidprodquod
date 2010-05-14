@@ -190,10 +190,10 @@
 
 	<!-- Regras de navegacao menuadmin -->
 	<navigation-rule>
-		<from-view-id>/admin/*</from-view-id>
+		<from-view-id>/*</from-view-id>
 		<navigation-case>
 			<from-outcome>tags</from-outcome>
-			<to-view-id>admin/tag.xhtml</to-view-id>
+			<to-view-id>/admin/tag.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

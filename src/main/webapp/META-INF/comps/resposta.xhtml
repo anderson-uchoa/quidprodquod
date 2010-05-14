@@ -12,7 +12,7 @@
 	<body>
 	<h:form id="formAnswer">
 		<a4j:keepAlive beanName="respostaBean"></a4j:keepAlive>
-			<h:messages id="mensagens" globalOnly="true"></h:messages>
+		<h:messages id="mensagens" globalOnly="true"></h:messages>
 		<h2><h:outputText id="lbPergunta"
 			value="#{respostaBean.pergunta.titulo}" /></h2>
 		<br />
@@ -23,19 +23,24 @@
 		<a4j:repeat id="list" value="#{respostaBean.pergunta.respostas}"
 			var="item">
 			<li>
-			<p><h:outputText value="#{item.descricao}" escape="false"
-				class="entry" /></p>
+
+			<p><h:outputText value="Melhor Resposta ! "
+				rendered="#{item.melhorResposta}" /> <h:outputText
+				value="#{item.descricao}" escape="false" class="entry" /></p>
 			</li>
 			<li>
-			<p class="postmetadata">
-			<a4j:commandButton value="aprova" immediate="true"
-				action="#{respostaBean.aprovarResposta}" reRender="formAnswer" >
+			<p class="postmetadata"><a4j:commandButton value="aprova"
+				immediate="true" action="#{respostaBean.aprovarResposta}"
+				reRender="formAnswer" enable="#{respostaBean.naoAprovada}">
 				<f:setPropertyActionListener value="#{item.id}"
 					target="#{respostaBean.idEntity}" />
-			 </a4j:commandButton>|
-			<a4j:commandButton value="desaprova" immediate="true"
-				action="#{respostaBean.desaprovarResposta}" reRender="formAnswer" />
-			</p>
+			</a4j:commandButton>| <a4j:commandButton value="desaprova" immediate="true"
+				enable="#{respostaBean.jaAprovada}"
+				action="#{respostaBean.desaprovarResposta}" reRender="formAnswer" />|
+
+			<a4j:commandButton value="melhor resposta" immediate="true"
+				rendered="#{respostaBean.perguntaOwner}"
+				action="#{respostaBean.classificarMelhor}" reRender="formAnswer" /></p>
 			</li>
 		</a4j:repeat>
 		<br />

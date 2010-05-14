@@ -14,21 +14,21 @@
 <h:form id="form">
 	<a href="usuariocadastro.jsf">Cadastre-se</a>
 	<br />
-	<h:messages id="mensagens" globalOnly="true"></h:messages>
+	<h:messages id="mensagens" globalOnly="true" ></h:messages>
 	*Login:<h:inputText id="login"
 		value="#{authenticatorBean.usuario.login}" required="true"
-		requiredMessage="O campo login é obrigatório">
+		requiredMessage="O campo login é obrigatório"  style="margin:16px">
 	</h:inputText>
 	<rich:message for="login" />
 	<br />
 	*Senha:<h:inputSecret id="senha"
 		value="#{authenticatorBean.usuario.senha}" required="true"
-		requiredMessage="O campo senha é obrigatório">
+		requiredMessage="O campo senha é obrigatório"  style="margin:10px">
 	</h:inputSecret>
 	<rich:message for="senha" />
 	<br />
 	<a4j:commandButton action="#{authenticatorBean.autenthicate}"
-		reRender="form" value="Entrar" />
+		reRender="form" value="Entrar"  style="margin-top:5px"/>
 </h:form>
 </body>
 </html>

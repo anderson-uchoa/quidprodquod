@@ -28,7 +28,8 @@
 			</li>
 			<li>
 			<p class="postmetadata">
-				Enviada em<h:outputText value=" #{item.dataEnvio}" /> |
+				Enviada em<h:outputText value=" #{item.dataEnvio}" /> 
+				Autor: <h:outputText value=" #{item.usuario.login}" />|
 				<h:commandLink action="#{respostaBean.answer}" value="#{item.quantidadeRespostas} Resposta(s)">
 					<f:setPropertyActionListener value="#{item.id}" 
 						target="#{respostaBean.idEntity}" />
