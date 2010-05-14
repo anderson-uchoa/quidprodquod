@@ -37,6 +37,9 @@ public class RespostaBean implements Serializable {
 	private Resposta resposta;
 	private final GenericDaoHibernateImpl<Classificacao> classificacaoDAO;
 	private final GenericDaoHibernateImpl<Resposta> respostaDAO;
+	private Boolean perguntaOwner;
+	private Boolean jaAprovada;
+	private Boolean naoAprovada;
 
 	public RespostaBean() {
 		super();
@@ -79,12 +82,41 @@ public class RespostaBean implements Serializable {
 		this.resposta = resposta;
 	}
 
+	public Boolean getPerguntaOwner() {
+		Usuario usuario = (Usuario) FacesUtil.getInstance().getSessionObject(
+				"usuario");
+		if (usuario.equals(getPergunta().getUsuario())) {
+			perguntaOwner = true;
+		}
+		return perguntaOwner;
+	}
+
+	public void setPerguntaOwner(Boolean perguntaOwner) {
+		this.perguntaOwner = perguntaOwner;
+	}
+
 	public String getIdEntity() {
 		return idEntity;
 	}
 
 	public void setIdEntity(String idEntity) {
 		this.idEntity = idEntity;
+	}
+
+	public Boolean getJaAprovada() {
+		return jaAprovada;
+	}
+
+	public void setJaAprovada(Boolean jaAprovada) {
+		this.jaAprovada = jaAprovada;
+	}
+
+	public Boolean getNaoAprovada() {
+		return naoAprovada;
+	}
+
+	public void setNaoAprovada(Boolean naoAprovada) {
+		this.naoAprovada = naoAprovada;
 	}
 
 	// *************Fim Getters and Setters**************\\
@@ -122,6 +154,11 @@ public class RespostaBean implements Serializable {
 	public void prepareUpdate() {
 		Long id = Long.parseLong(idEntity);
 		setRole(load(id));
+	}
+
+	public Classificacao findClassificacaoByExample(Classificacao c) {
+		Example clasExample = Example.create(c);
+		return classificacaoDAO.findByCriteria(clasExample);
 	}
 
 	public List<SelectItem> getRoleSelect() {
@@ -197,9 +234,9 @@ public class RespostaBean implements Serializable {
 					"Erro ao incluir o registro." + e);
 		}
 	}
-	
+
 	public void desaprovarResposta() {
-		
+
 		Usuario usuario = (Usuario) FacesUtil.getInstance().getSessionObject(
 				"usuario");
 
@@ -209,20 +246,54 @@ public class RespostaBean implements Serializable {
 			c.setUsario(usuario);
 
 			Example clasExample = Example.create(c);
-			Classificacao classificacao = classificacaoDAO.findByCriteria(clasExample);
-			
+			Classificacao classificacao = classificacaoDAO
+					.findByCriteria(clasExample);
+
 			if (classificacao != null) {
 				classificacaoDAO.delete(classificacao);
-				FacesUtil.getInstance().sendMessageInfo(
-						"Resposta desaprovada.");
+				FacesUtil.getInstance()
+						.sendMessageInfo("Resposta desaprovada.");
 
 			} else {
-				FacesUtil.getInstance().sendMessageInfo(
-						"Esta reposta ainda não foi classificada por este usuário.");
+				FacesUtil
+						.getInstance()
+						.sendMessageInfo(
+								"Esta reposta ainda não foi classificada por este usuário.");
 			}
 		} catch (Exception e) {
 			FacesUtil.getInstance().sendMessageError(
 					"Erro ao incluir o registro." + e);
 		}
 	}
+
+	/**
+	 * Classifica a resposta como a melhor pelo autor da pergunta
+	 */
+	public void classificarMelhor() {
+
+		try {
+			Resposta r = respostaDAO.load(new Long(idEntity));
+			if (r != null) {
+
+				r.setMelhorResposta(true);
+				respostaDAO.save(r);
+				// Salva o ranking de quem respondeu a pergunta
+				Usuario usuario = r.getUsuario();
+				Integer rank = usuario.getRanking() + 25;
+				usuario.setRanking(rank);
+				new GenericDaoHibernateImpl<Usuario>(Usuario.class)
+						.save(usuario);
+				FacesUtil.getInstance().sendMessageInfo(
+						"Resposta classificada.");
+			} else {
+
+				FacesUtil.getInstance().sendMessageError(
+						"Erro ao executar a operação");
+			}
+		} catch (Exception e) {
+			FacesUtil.getInstance().sendMessageError(
+					"Erro ao incluir o registro." + e);
+		}
+	}
+
 }

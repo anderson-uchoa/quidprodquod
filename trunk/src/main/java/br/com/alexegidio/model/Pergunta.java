@@ -18,6 +18,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 
@@ -120,6 +121,7 @@ public class Pergunta implements Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pergunta", fetch = FetchType.EAGER)
+	@OrderBy("melhorResposta ASC")
 	public List<Resposta> getRespostas() {
 		if (respostas == null) {
 			respostas = new ArrayList<Resposta>();
